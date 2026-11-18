@@ -975,7 +975,6 @@ export default function PatientDashboard() {
       schedule_conflict: "Scheduling conflict",
       unable_to_visit: "Unable to visit clinic today",
       found_alternative: "Found another time/doctor",
-      cost_issue: "Cost / fee concerns",
       others: "Others",
     };
 
@@ -1090,13 +1089,7 @@ export default function PatientDashboard() {
           </label>
         </div>
 
-        <div class="reason-option">
-          <input type="radio" id="reason_cost_issue" name="cancel_reason" value="cost_issue" />
-          <label for="reason_cost_issue">
-            <span class="reason-dot"></span>
-            <div><div class="reason-option-title">Cost / fee concerns</div></div>
-          </label>
-        </div>
+
 
         <div class="reason-option">
           <input type="radio" id="reason_others" name="cancel_reason" value="others" />
