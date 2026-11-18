@@ -46,12 +46,12 @@ export default function PWADiagnostic() {
     };
 
     checkPWA();
-    window.addEventListener('beforeinstallprompt', () => {
-      checks.installPrompt = true;
-      setStatus({...checks, installPrompt: true});
-    });
+    const handleBeforeInstallPrompt = () => {
+      setStatus((prev) => ({ ...prev, installPrompt: true }));
+    };
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-    return () => window.removeEventListener('beforeinstallprompt');
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
   }, []);
 
   const forceSWRegister = async () => {

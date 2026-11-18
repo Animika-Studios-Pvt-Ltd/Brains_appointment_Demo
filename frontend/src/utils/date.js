@@ -1,5 +1,4 @@
-// backend/utils/date.js
-function computeAgeFromDob(dob) {
+export function computeAgeFromDob(dob) {
   if (!dob) return undefined;
   const d = new Date(dob);
   if (isNaN(d.getTime())) return undefined;
@@ -10,4 +9,4 @@ function computeAgeFromDob(dob) {
   return age;
 }
 
-module.exports = { computeAgeFromDob };
+export default computeAgeFromDob;

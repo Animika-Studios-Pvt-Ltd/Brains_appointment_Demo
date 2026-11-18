@@ -294,8 +294,9 @@ const ReceptionistDashboardContent = () => {
         setAvailDoctorsError(e.message || "Failed to load doctors");
         setAvailDoctors([]);
       } finally {
-        if (!mounted) return;
-        setAvailDoctorsLoading(false);
+        if (mounted) {
+          setAvailDoctorsLoading(false);
+        }
       }
     })();
 
@@ -390,8 +391,9 @@ const ReceptionistDashboardContent = () => {
         setUpcomingAppointments([]);
         setAllUpcomingAppointments([]);
       } finally {
-        if (!mounted) return;
-        setUpcomingLoading(false);
+        if (mounted) {
+          setUpcomingLoading(false);
+        }
       }
     })();
 

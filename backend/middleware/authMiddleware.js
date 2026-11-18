@@ -71,6 +71,7 @@ const authenticate = async (req, res, next) => {
 
     req.user = {
       ...user.toObject(),
+      id: user._id.toString(),
       type: user.type || userType,
       role: user.role || userType,
       permissions: user.permissions || [],

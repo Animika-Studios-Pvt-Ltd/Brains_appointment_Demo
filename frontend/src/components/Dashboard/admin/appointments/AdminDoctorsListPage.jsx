@@ -64,21 +64,8 @@ export default function AdminDoctorsListPage() {
 
   // modal control for blocking schedule
   const [blockModalOpen, setBlockModalOpen] = useState(false);
-  const [blockDoctorId, setBlockDoctorId] = useState(null);
-  const [blockDoctorName, setBlockDoctorName] = useState("");
   const [modalDoctor, setModalDoctor] = useState(null);
 
-  function openBlockModalForDoctor(d) {
-    setBlockDoctorId(d._id);
-    setBlockDoctorName(d.name || "Doctor");
-    setBlockModalOpen(true);
-  }
-
-  function closeBlockModal() {
-    setBlockModalOpen(false);
-    setBlockDoctorId(null);
-    setBlockDoctorName("");
-  }
   function openBlockModalForDoctor(d) {
     // stopPropagation is done at caller; here we just set state
     setModalDoctor({ id: d._id, name: d.name || d.raw?.name || "Doctor" });
