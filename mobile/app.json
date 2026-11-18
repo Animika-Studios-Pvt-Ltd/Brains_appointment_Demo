@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Brains Patient",
+    "slug": "brains-patient-mobile",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/brains-ios.png",
+    "scheme": "brains",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/transparent-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/brains-adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "splash": {
+        "image": "./assets/transparent-splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.india_lumos.brainspatientmobile"
+    },
+    "notification": {
+      "icon": "./assets/brains-notification-icon.png"
+    },
+    "web": {
+      "favicon": "./assets/brains-logo.png"
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/transparent-splash.png",
+          "backgroundColor": "#ffffff",
+          "resizeMode": "contain"
+        }
+      ],
+      "@react-native-community/datetimepicker",
+      "expo-web-browser"
+    ]
+  }
+}

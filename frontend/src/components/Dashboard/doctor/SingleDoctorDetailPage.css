@@ -1,0 +1,421 @@
+/* Doctor detail — interactive cards (layout unchanged) */
+
+@keyframes doctor-detail-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.doctor-detail-shell {
+  border-radius: 1rem;
+  background: #fff;
+  border: 1px solid rgba(19, 78, 151, 0.1);
+  box-shadow:
+    0 4px 24px rgba(19, 78, 151, 0.06),
+    0 1px 3px rgba(19, 78, 151, 0.04);
+  box-sizing: border-box;
+}
+
+.doctor-detail-grid,
+.doctor-detail-grid__main,
+.doctor-detail-grid__aside,
+.doctor-detail-grid__about {
+  box-sizing: border-box;
+}
+
+.doctor-detail-stat-card {
+  box-sizing: border-box;
+}
+
+.doctor-detail-animate {
+  animation: doctor-detail-fade-up 0.5s ease-out backwards;
+}
+
+.doctor-detail-animate--1 {
+  animation-delay: 0.05s;
+}
+.doctor-detail-animate--2 {
+  animation-delay: 0.12s;
+}
+.doctor-detail-animate--3 {
+  animation-delay: 0.2s;
+}
+.doctor-detail-animate--4 {
+  animation-delay: 0.28s;
+}
+
+.doctor-detail-card {
+  height: 100%;
+  border-radius: 0.875rem;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 2px 12px rgba(19, 78, 151, 0.05);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.doctor-detail-card--hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 173, 198, 0.38);
+  box-shadow: 0 14px 36px rgba(19, 78, 151, 0.12);
+}
+
+.doctor-detail-icon-box {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.doctor-detail-card--hover:hover .doctor-detail-icon-box {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(6, 173, 198, 0.2);
+}
+
+.doctor-detail-day-pill {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.doctor-detail-day-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(6, 173, 198, 0.22);
+}
+
+.doctor-detail-slot {
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.doctor-detail-slot:hover {
+  transform: translateX(4px);
+  border-color: rgba(6, 173, 198, 0.45);
+  background: linear-gradient(90deg, #e8fafe 0%, #fff 55%);
+  box-shadow: 0 4px 14px rgba(19, 78, 151, 0.08);
+}
+
+.doctor-detail-profile-photo {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.doctor-detail-profile-wrap:hover .doctor-detail-profile-photo {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(19, 78, 151, 0.18);
+}
+
+.doctor-detail-book-btn {
+  box-sizing: border-box;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+
+/* Tablet (iPad Air, etc.) — profile card full width; keep book btn modest */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .doctor-detail-grid__aside > .group {
+    max-width: 22rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .doctor-detail-profile-book-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .doctor-detail-profile-book-wrap .doctor-detail-book-btn {
+    width: auto;
+    min-width: 11.5rem;
+    max-width: 15rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+.doctor-detail-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(6, 173, 198, 0.38);
+}
+
+.doctor-detail-book-btn:active {
+  transform: translateY(0);
+}
+
+.doctor-detail-back-btn {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.doctor-detail-back-btn:hover {
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(19, 78, 151, 0.12);
+}
+
+/* About panel — full width; header on top, paragraphs below */
+.doctor-about-panel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.doctor-about-panel__inner {
+  display: block;
+  width: 100%;
+}
+
+.doctor-about-panel__text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.doctor-about-panel__text p {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.doctor-about-panel__inner a,
+.doctor-about-panel__toggle {
+  text-decoration: none;
+}
+
+.doctor-about-panel__toggle {
+  width: fit-content;
+  max-width: 100%;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doctor-about-panel__toggle {
+    transition: none;
+  }
+
+  .doctor-about-panel__toggle:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .doctor-about-panel {
+    padding: 1rem !important;
+    border-radius: 1.125rem;
+  }
+}
+
+/* Availability panel — mobile / Galaxy Z Fold */
+.doctor-availability-panel__content,
+.doctor-availability-panel__header {
+  position: relative;
+  z-index: 1;
+}
+
+.doctor-availability-panel__days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.doctor-availability-panel__slot {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 639px) {
+  .doctor-detail-shell {
+    padding: 1rem !important;
+    border-radius: 1.25rem;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin-top: -15 px;
+  }
+
+  .doctor-detail-grid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .doctor-detail-grid__stats,
+  .doctor-detail-grid__availability,
+  .doctor-detail-grid__aside,
+  .doctor-detail-grid__about {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-column: 1 / -1;
+  }
+
+  .doctor-detail-stat-card,
+  .doctor-availability-panel,
+  .doctor-about-panel {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .doctor-availability-panel {
+    border-radius: 1.125rem;
+  }
+
+  .doctor-availability-panel:hover,
+  .doctor-detail-stat-card:hover {
+    transform: none;
+  }
+
+  .doctor-availability-panel__content {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .doctor-availability-panel__watermark {
+    display: none;
+  }
+
+  .doctor-availability-panel__title {
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+
+  /* Day pills scroll inside panel — no negative margin (avoids horizontal shift) */
+  .doctor-availability-panel__days {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.375rem;
+    padding-bottom: 0;
+    margin-right: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+
+  .doctor-availability-panel__days::-webkit-scrollbar {
+    display: none;
+  }
+
+  .doctor-availability-panel__slots-label {
+    letter-spacing: 0.12em;
+  }
+
+  .doctor-detail-slot:hover,
+  .doctor-detail-day-pill:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .doctor-availability-panel:hover {
+    transform: translateY(-0.375rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .doctor-availability-panel__days {
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .doctor-availability-panel__days .doctor-detail-day-pill {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.6875rem;
+  }
+}
+
+/* Below 991px: doctor card → top, about → 2nd, stats → 3rd, availability → bottom */
+@media (max-width: 991px) {
+  .doctor-detail-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doctor-detail-grid__aside {
+    order: 1;
+  }
+
+  .doctor-detail-grid__about {
+    order: 2;
+  }
+
+  .doctor-detail-grid__stats {
+    order: 3;
+  }
+
+  .doctor-detail-grid__availability {
+    order: 4;
+  }
+}
+
+/* Desktop: explicit grid placement — aside pinned col 9-12 spanning rows 1-2 */
+@media (min-width: 992px) {
+  .doctor-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: stretch; /* override Tailwind items-start so aside can fill full height */
+  }
+
+  .doctor-detail-grid__stats {
+    grid-column: 1 / 9;
+    grid-row: 1;
+    align-self: start; /* only as tall as content */
+  }
+
+  .doctor-detail-grid__aside {
+    grid-column: 9 / 13;
+    grid-row: 1 / 3;
+    align-self: stretch; /* fill the full combined row-span height */
+  }
+
+  /* Profile card fills the aside height */
+  .doctor-detail-grid__aside > div {
+    flex: 1;
+    height: 100%;
+  }
+
+  .doctor-detail-grid__availability {
+    grid-column: 1 / 9;
+    grid-row: 2;
+    align-self: start; /* only as tall as content */
+  }
+
+  .doctor-detail-grid__about {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doctor-detail-animate,
+  .doctor-detail-card,
+  .doctor-detail-day-pill,
+  .doctor-detail-slot,
+  .doctor-detail-profile-photo,
+  .doctor-detail-book-btn,
+  .doctor-detail-back-btn,
+  .doctor-detail-icon-box {
+    animation: none;
+    transition: none;
+  }
+
+  .doctor-detail-card--hover:hover {
+    transform: none;
+  }
+}

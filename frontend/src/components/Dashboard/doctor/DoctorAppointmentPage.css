@@ -1,0 +1,1586 @@
+/* Patient book-appointment page — Lumos-style layout */
+/* Width aligns with .hospital-site-header__container on the same wrapper (logo → hamburger) */
+.book-appointment-page .book-appointment-page__content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.book-appointment-page .book-doctor-card,
+.book-appointment-page .book-appointment-layout {
+  width: 100%;
+  max-width: 100%;
+}
+
+.book-appointment-page {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e8f4fc 45%,
+    rgba(19, 78, 151, 0.22) 100%
+  );
+}
+
+.book-doctor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(19, 78, 151, 0.06);
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+.book-doctor-card__avatar-wrap {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.book-doctor-card__avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 3px solid #e8f4fc;
+  box-shadow: 0 4px 16px rgba(19, 78, 151, 0.12);
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card__avatar {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+}
+
+.book-doctor-card__avatar-fallback {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #2a6cb8, #134e97);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 3px solid #e8f4fc;
+}
+
+.book-doctor-card__body {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card__body {
+    text-align: left;
+  }
+}
+
+.book-doctor-card__name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card__name-row {
+    justify-content: flex-start;
+  }
+}
+
+.book-doctor-card__name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #134e97;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card__name {
+    font-size: 1.5rem;
+  }
+}
+
+.book-doctor-card__verified {
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.book-doctor-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+@media (min-width: 768px) {
+  .book-doctor-card__meta {
+    justify-content: flex-start;
+  }
+}
+
+.book-doctor-card__meta-icon {
+  color: #06adc6;
+  flex-shrink: 0;
+}
+
+.book-doctor-card__brand {
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .book-doctor-card__brand {
+    display: flex;
+  }
+}
+
+.book-doctor-card__brand img {
+  height: 4.5rem;
+  width: auto;
+  max-width: min(11rem, 38vw);
+  object-fit: contain;
+}
+
+@media (min-width: 1280px) {
+  .book-doctor-card__brand img {
+    height: 5rem;
+  }
+}
+
+/* Two-column layout — equal-width columns (minmax prevents content from stretching tracks) */
+.book-appointment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  width: 100%;
+}
+
+/* Two columns from 900px — iPad Mini portrait (~744px) stays single column */
+@media (min-width: 900px) {
+  .book-appointment-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .book-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .book-panel__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .book-panel--calendar .book-panel__body {
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  .book-panel--calendar .book-cal-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-panel--booking form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .book-panel--booking .book-actions {
+    margin-top: auto;
+  }
+}
+
+/* iPad Mini landscape & small tablets — side-by-side without empty calendar stretch */
+@media (min-width: 900px) and (max-width: 1100px) and (min-height: 861px) {
+  .book-appointment-layout {
+    gap: 1rem;
+  }
+
+  .book-panel__head {
+    padding: 0.875rem 1rem;
+  }
+
+  .book-panel__body {
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  .book-panel__title {
+    font-size: 1.0625rem;
+  }
+
+  .book-legend {
+    font-size: 0.6875rem;
+    gap: 0.35rem 0.55rem;
+  }
+
+  .book-cal-wrap {
+    padding: 0.65rem;
+  }
+
+  .book-cal-grid {
+    gap: 0.28rem;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.45rem;
+    padding: 0.2rem 0.1rem;
+  }
+
+  .book-cal-day__mon {
+    font-size: 0.5625rem;
+  }
+
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .book-time-slot {
+    font-size: 0.6875rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .book-doctor-card__brand {
+    display: none;
+  }
+}
+
+/* iPad Mini portrait & tablet (768–1023) — side margins on booking panels */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .book-appointment-page .book-appointment-page__content {
+    padding-inline: clamp(1.25rem, 4.5vw, 2rem) !important;
+  }
+
+  .book-doctor-card {
+    margin-inline: 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+
+  .book-appointment-layout {
+    margin-inline: 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+    box-sizing: border-box;
+    gap: 1.25rem;
+  }
+
+  .book-panel {
+    border-radius: 1rem;
+  }
+}
+
+/* iPad Mini landscape (~1024) — inset calendar + booking columns */
+@media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
+  .book-appointment-page .book-appointment-page__content {
+    padding-inline: clamp(1.15rem, 3.5vw, 1.75rem) !important;
+  }
+
+  .book-doctor-card,
+  .book-appointment-layout {
+    margin-inline: 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+}
+
+/* iPad Mini / iPad Pro 11 portrait — stacked full-width panels */
+@media (min-width: 640px) and (max-width: 899px) {
+  .book-appointment-layout {
+    gap: 1.25rem;
+  }
+
+  .book-doctor-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 1.25rem 1.35rem;
+  }
+
+  .book-doctor-card__body {
+    text-align: left;
+  }
+
+  .book-doctor-card__name-row {
+    justify-content: flex-start;
+  }
+
+  .book-doctor-card__meta {
+    justify-content: flex-start;
+  }
+
+  .book-doctor-card__brand {
+    display: none;
+  }
+
+  .book-panel--calendar .book-panel__head {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .book-cal-wrap {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.65rem;
+  }
+
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* iPad Pro 12.9 / iPad Mini landscape-portrait stack (900–1023 portrait) */
+@media (min-width: 900px) and (max-width: 1023px) and (orientation: portrait) {
+  .book-appointment-page .book-appointment-page__content {
+    padding-inline: clamp(1.35rem, 4vw, 2rem) !important;
+  }
+
+  .book-appointment-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.35rem;
+    margin-inline: 0.65rem;
+    width: calc(100% - 1.3rem);
+    max-width: calc(100% - 1.3rem);
+  }
+
+  .book-doctor-card {
+    margin-inline: 0.65rem;
+    width: calc(100% - 1.3rem);
+    max-width: calc(100% - 1.3rem);
+  }
+
+  .book-doctor-card__brand {
+    display: none;
+  }
+
+  .book-cal-wrap {
+    max-width: 38rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.85rem;
+  }
+
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .book-time-slot {
+    min-height: 2.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* iPad Pro landscape & large tablets — two columns, natural panel height (not short displays) */
+@media (min-width: 1101px) and (max-width: 1399px) and (min-height: 861px) {
+  .book-appointment-layout {
+    align-items: stretch;
+    gap: 1.35rem;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .book-panel {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .book-panel--calendar .book-panel__body {
+    flex: 1;
+  }
+
+  .book-panel__head {
+    padding: 1rem 1.15rem;
+  }
+
+  .book-panel__body {
+    padding: 1rem 1.15rem 1.15rem;
+  }
+
+  .book-legend {
+    font-size: 0.75rem;
+  }
+
+  .book-cal-wrap {
+    padding: 0.75rem;
+  }
+
+  .book-cal-grid {
+    gap: 0.35rem;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.85rem;
+    padding: 0.25rem 0.15rem;
+  }
+
+  .book-cal-day__num {
+    font-size: 0.875rem;
+  }
+
+  .book-cal-day__mon {
+    font-size: 0.625rem;
+  }
+
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .book-time-slot {
+    min-height: 2.75rem;
+    padding: 0.55rem 0.35rem;
+    font-size: 0.8125rem;
+  }
+
+  .book-doctor-card {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .book-doctor-card__brand {
+    display: flex;
+  }
+
+  .book-doctor-card__brand img {
+    height: 4rem;
+    max-width: 9rem;
+  }
+
+  .book-actions {
+    gap: 1rem;
+  }
+
+  .book-btn {
+    min-height: 2.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* 1024–1400px — equal-height calendar + booking within header-aligned container */
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .book-appointment-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .book-doctor-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .book-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+    height: 100%;
+  }
+
+  .book-panel__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-panel--calendar .book-panel__body {
+    flex: 1;
+  }
+
+  .book-panel--calendar .book-cal-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-panel--booking form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .book-panel--booking .book-actions {
+    margin-top: auto;
+  }
+
+  .book-cal-wrap {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Around 1200px — add left/right breathing room for both containers */
+@media (min-width: 1180px) and (max-width: 1280px) {
+  .book-appointment-page .book-appointment-page__content {
+    padding-inline: clamp(1rem, 2.2vw, 1.5rem) !important;
+  }
+
+  .book-doctor-card,
+  .book-appointment-layout {
+    margin-inline: 0.55rem;
+    width: calc(100% - 1.1rem);
+    max-width: calc(100% - 1.1rem);
+    box-sizing: border-box;
+  }
+}
+
+/* Wide desktop — equal-height columns, header container max-width (1320px) */
+@media (min-width: 1400px) {
+  .book-appointment-layout {
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .book-panel {
+    min-height: 100%;
+  }
+
+  .book-doctor-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.book-panel {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(19, 78, 151, 0.05);
+  overflow: hidden;
+}
+
+.book-panel--calendar {
+  overflow: visible;
+}
+
+.book-panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.book-panel__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #134e97;
+}
+
+.book-panel__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-panel__title-icon {
+  color: #134e97;
+  flex-shrink: 0;
+}
+
+.book-panel__subtitle {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.book-panel__body {
+  min-width: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.book-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.book-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.book-legend__swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.2rem;
+  flex-shrink: 0;
+}
+
+.book-legend__swatch--available {
+  background: #d1fae5;
+  box-shadow: inset 0 0 0 1px #6ee7b7;
+}
+
+.book-legend__swatch--blocked {
+  background: #ffe4e6;
+  box-shadow: inset 0 0 0 1px #fda4af;
+}
+
+.book-legend__swatch--selected {
+  background: #dbeafe;
+  box-shadow: inset 0 0 0 1px #93c5fd;
+}
+
+.book-cal-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.book-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.2rem;
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.book-cal-wd--short {
+  display: none;
+}
+
+.book-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.book-cal-day {
+  aspect-ratio: 1;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05rem;
+  padding: 0.15rem 0.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  font-size: 0.6875rem;
+  line-height: 1.15;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.book-cal-day:disabled {
+  cursor: not-allowed;
+}
+
+.book-cal-day__num {
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.book-cal-day__mon {
+  font-size: 0.625rem;
+  opacity: 0.85;
+}
+
+.book-cal-day__tag {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-top: 0.05rem;
+}
+
+.book-cal-day--past {
+  background: #f1f5f9;
+  color: #94a3b8;
+  border-color: #e2e8f0;
+  opacity: 0.7;
+}
+
+.book-cal-day--blocked {
+  background: #ffe4e6;
+  color: #be123c;
+  border-color: #fecdd3;
+}
+
+.book-cal-day--available {
+  background: #d1fae5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.book-cal-day--available:not(:disabled):hover {
+  box-shadow: 0 0 0 2px #34d399;
+}
+
+.book-cal-day--selected {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.book-date-field {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  font-size: 0.9375rem;
+  color: #0f172a;
+}
+
+.book-date-field__icon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.book-date-field__text {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+}
+
+.book-date-field__check {
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.book-time-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #134e97;
+  margin-bottom: 0.5rem;
+}
+
+.book-time-grid {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+/* Column count follows panel width — 4 cols only when booking panel is wide enough */
+@container book-panel (min-width: 26rem) {
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@container book-panel (min-width: 18rem) and (max-width: 25.99rem) {
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.book-panel--booking {
+  overflow: visible;
+  container-type: inline-size;
+  container-name: book-panel;
+}
+
+.book-panel--booking form {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.book-turnstile-section {
+  margin-top: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.book-turnstile-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 5.25rem;
+  padding: 0.35rem 0;
+  overflow: visible;
+}
+
+.book-turnstile-widget,
+.book-panel--booking #cf-turnstile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 20rem;
+  min-height: 4.875rem;
+  overflow: visible;
+}
+
+.book-panel--booking #cf-turnstile iframe {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 1400px) {
+  .book-panel--booking .book-time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.book-time-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #134e97;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  position: relative;
+}
+
+.book-time-slot--video {
+  border-color: #c084fc;
+  background: #faf5ff;
+  color: #6b21a8;
+}
+
+.book-time-slot--video:not(:disabled):not(.book-time-slot--selected):hover {
+  border-color: #9333ea;
+  background: #f3e8ff;
+  color: #581c87;
+}
+
+.book-time-slot__badge {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  background: #f3e8ff;
+  color: #7e22ce;
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.book-time-slot--selected .book-time-slot__badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.book-time-slot:not(:disabled):not(.book-time-slot--selected):hover {
+  border-color: #06adc6;
+  background: #f0fdfa;
+  color: #134e97;
+}
+
+@keyframes slideInSidePanel {
+  0% {
+    opacity: 0;
+    transform: translateX(80px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.slide-in-side-panel {
+  animation: slideInSidePanel 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.book-time-slot--selected,
+.book-time-slot--selected:hover {
+  background: #134e97;
+  border-color: #134e97;
+  color: #fff;
+}
+
+.book-time-slot--selected.book-time-slot--video,
+.book-time-slot--selected.book-time-slot--video:hover {
+  background: linear-gradient(135deg, #7e22ce 0%, #4c1d95 100%);
+  border-color: #6b21a8;
+  color: #fff;
+}
+
+.book-time-slot--selected:hover {
+  background: #0f3d75;
+  border-color: #0f3d75;
+}
+
+.book-time-slot:disabled {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.book-symptoms-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #134e97;
+  margin-bottom: 0.35rem;
+  margin-top: 1rem;
+}
+
+.book-symptoms-input {
+  width: 100%;
+  min-height: 5rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  resize: vertical;
+  color: #0f172a;
+}
+
+.book-symptoms-input:focus {
+  outline: none;
+  border-color: #06adc6;
+  box-shadow: 0 0 0 3px rgba(6, 173, 198, 0.2);
+}
+
+.book-symptoms-input::placeholder {
+  color: #94a3b8;
+}
+
+.book-turnstile-hint {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.book-btn {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.book-btn--ghost {
+  background: #fff;
+  color: #134e97;
+  border: 1px solid #cbd5e1;
+}
+
+.book-btn--ghost:hover {
+  background: #f8fafc;
+}
+
+.book-btn--primary {
+  background: #134e97;
+  color: #fff;
+  border: 1px solid #134e97;
+}
+
+.book-btn--primary:hover:not(:disabled) {
+  background: #0f3d75;
+}
+
+.book-btn--primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.book-slots-area {
+  min-width: 0;
+}
+
+.book-slots-messages {
+  min-height: 0;
+  margin-bottom: 0.5rem;
+}
+
+.book-slots-messages:not(:empty) {
+  min-height: 2.75rem;
+}
+
+.book-time-grid-wrap {
+  position: relative;
+  min-height: 11.5rem;
+}
+
+.book-time-grid-wrap--loading .book-time-grid {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.book-time-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.book-time-slot--skeleton {
+  min-height: 2.35rem;
+  background: linear-gradient(90deg, #e2e8f0 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background-size: 200% 100%;
+  border-color: transparent;
+  animation: book-slot-shimmer 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes book-slot-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.book-slots-empty {
+  font-size: 0.875rem;
+  color: #64748b;
+  padding: 0.75rem 0;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* Mobile — keep 7-day grid inside the card (no horizontal bleed) */
+@media (max-width: 639px) {
+  .book-panel--calendar .book-panel__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-legend {
+    gap: 0.5rem 0.65rem;
+    font-size: 0.6875rem;
+  }
+
+  .book-panel--calendar .book-panel__body {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .book-cal-wrap {
+    padding: 0.5rem 0.35rem;
+  }
+
+  .book-cal-weekdays {
+    font-size: 0.5625rem;
+    margin-bottom: 0.35rem;
+    gap: 0.125rem;
+  }
+
+  .book-cal-wd--full {
+    display: none;
+  }
+
+  .book-cal-wd--short {
+    display: inline;
+  }
+
+  .book-cal-grid {
+    gap: 0.2rem;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.35rem;
+    border-radius: 0.375rem;
+    padding: 0.2rem 0.05rem;
+  }
+
+  .book-cal-day__num {
+    font-size: 0.75rem;
+  }
+
+  .book-cal-day__mon,
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-cal-day--selected {
+    box-shadow: inset 0 0 0 2px #2563eb;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cal-day {
+    min-height: 2.1rem;
+  }
+
+  .book-cal-day__num {
+    font-size: 0.6875rem;
+  }
+}
+
+/* Short wide screens 900–1019px only (Nest Hub, etc.) — 1024+ stays two columns */
+@media (min-width: 900px) and (max-width: 1019px) and (max-height: 860px) {
+  .book-appointment-page__content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .book-appointment-page__back {
+    margin-bottom: 0.5rem;
+  }
+
+  .book-doctor-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .book-doctor-card__avatar,
+  .book-doctor-card__avatar-fallback {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1rem;
+  }
+
+  .book-doctor-card__name {
+    font-size: 1.0625rem;
+  }
+
+  .book-doctor-card__meta {
+    font-size: 0.8125rem;
+    margin-top: 0.15rem;
+  }
+
+  .book-doctor-card__brand {
+    display: none;
+  }
+
+  /* Single column — side-by-side panels misalign on short displays */
+  .book-appointment-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+    max-width: 42rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .book-panel__head {
+    padding: 0.6rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .book-panel__body {
+    padding: 0.6rem 0.85rem 0.75rem;
+  }
+
+  .book-panel__title {
+    font-size: 0.9375rem;
+  }
+
+  .book-panel--calendar .book-panel__head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .book-legend {
+    font-size: 0.625rem;
+    gap: 0.25rem 0.4rem;
+  }
+
+  .book-cal-wrap {
+    padding: 0.45rem;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .book-cal-grid {
+    gap: 0.2rem;
+  }
+
+  .book-cal-day {
+    aspect-ratio: auto;
+    min-height: 2.1rem;
+    padding: 0.15rem 0.05rem;
+  }
+
+  .book-cal-day__num {
+    font-size: 0.75rem;
+  }
+
+  .book-cal-day__mon,
+  .book-cal-day__tag {
+    display: none;
+  }
+
+  .book-cal-wd--full {
+    display: none;
+  }
+
+  .book-cal-wd--short {
+    display: inline;
+  }
+
+  .book-date-field {
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.8125rem;
+  }
+
+  .book-time-label,
+  .book-symptoms-label {
+    font-size: 0.8125rem;
+    margin-top: 0.65rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .book-symptoms-input {
+    min-height: 3.25rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.8125rem;
+  }
+
+  .book-panel--booking .book-time-grid,
+  .book-time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .book-time-grid-wrap {
+    min-height: 7.5rem;
+  }
+
+  .book-time-slot {
+    min-height: 2.1rem;
+    padding: 0.35rem 0.2rem;
+    font-size: 0.6875rem;
+  }
+
+  .book-turnstile-section {
+    margin-top: 0.5rem;
+  }
+
+  .book-turnstile-wrap {
+    min-height: 4.75rem;
+    padding: 0.2rem 0;
+  }
+
+  .book-turnstile-hint {
+    font-size: 0.6875rem;
+    margin-top: 0.35rem;
+  }
+
+  .book-panel--booking form {
+    flex: 0 1 auto;
+  }
+
+  .book-panel--booking .book-actions {
+    margin-top: 0.65rem;
+    padding-top: 0.6rem;
+    justify-content: stretch;
+  }
+
+  .book-actions .book-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .book-panel {
+    min-height: 0;
+  }
+
+  .book-panel--booking .book-actions {
+    margin-top: auto;
+  }
+}
+
+/* Nest Hub Max (1280×800) — roomier single column than Nest Hub */
+@media (min-width: 1100px) and (max-height: 860px) {
+  .book-appointment-page__content {
+    padding-top: 0.65rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .book-doctor-card {
+    padding: 0.75rem 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .book-doctor-card__avatar,
+  .book-doctor-card__avatar-fallback {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .book-doctor-card__name {
+    font-size: 1.125rem;
+  }
+
+  .book-appointment-layout {
+    max-width: 52rem;
+    gap: 0.75rem;
+  }
+
+  .book-panel__title {
+    font-size: 1rem;
+  }
+
+  .book-legend {
+    font-size: 0.6875rem;
+  }
+
+  .book-cal-day {
+    min-height: 2.35rem;
+  }
+
+  .book-cal-day__mon {
+    display: block;
+    font-size: 0.5625rem;
+  }
+
+  .book-panel--booking .book-time-grid,
+  .book-time-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .book-time-grid-wrap {
+    min-height: 8.5rem;
+  }
+
+  .book-time-slot {
+    min-height: 2.25rem;
+    font-size: 0.75rem;
+  }
+
+  .book-turnstile-wrap {
+    min-height: 5rem;
+  }
+
+  .book-symptoms-input {
+    min-height: 3.5rem;
+  }
+}
+
+/* Consultation Mode Selection */
+.book-mode-section {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.book-mode-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.book-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.book-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.book-mode-card:hover:not(:disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.book-mode-card--active {
+  border-color: #134e97;
+  background: #f0f7ff;
+  color: #134e97;
+  box-shadow: 0 4px 12px rgba(19, 78, 151, 0.08);
+}
+
+.book-mode-card:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+.book-mode-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.35rem;
+  line-height: 1;
+}
+
+.book-mode-card__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.book-mode-card__subtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+  font-weight: 500;
+}
+
+.book-mode-card--active .book-mode-card__subtitle {
+  color: #1e3a8a;
+}
+
+/* Informational banners */
+.book-mode-info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  border: 1px solid transparent;
+}
+
+.book-mode-info-banner--online {
+  background: #fffbeb;
+  color: #b45309;
+  border-color: #fef3c7;
+}
+
+.book-mode-info-banner--offline {
+  background: #f8fafc;
+  color: #334155;
+  border-color: #f1f5f9;
+}
+
+.book-mode-info-banner__icon {
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+

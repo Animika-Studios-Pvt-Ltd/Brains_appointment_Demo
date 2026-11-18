@@ -1,0 +1,1735 @@
+/* Doctor list header */
+.hospital-site-header {
+  position: relative;
+  background: #fff;
+  /* Gap between top nav items (ABOUT, SPECIALITIES, …). Examples: 0.5rem, 1rem, 1.5rem */
+  --hospital-nav-item-gap: 0.25rem;
+  /* Nav alignment: flex-start (left) | center | flex-end (right) */
+  --hospital-nav-align: center;
+}
+
+/* Align to official Bootstrap container responsive max-widths */
+.hospital-site-header__container {
+  width: 100% !important;
+  margin-inline: auto !important;
+  padding-inline: 15px !important;
+  position: relative !important;
+}
+@media (min-width: 576px) {
+  .hospital-site-header__container {
+    max-width: 540px !important;
+  }
+}
+@media (min-width: 768px) {
+  .hospital-site-header__container {
+    max-width: 720px !important;
+  }
+}
+@media (min-width: 992px) {
+  .hospital-site-header__container {
+    max-width: 960px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .hospital-site-header__container {
+    max-width: 1140px !important;
+  }
+}
+@media (min-width: 1400px) {
+  .hospital-site-header__container {
+    max-width: 1320px !important;
+  }
+}
+
+/* Uniform padding is set globally above */
+
+/* Logo + nav row */
+.hospital-site-header .hospital-header-main-row {
+  display: flex;
+  align-items: center;
+  min-height: 3.25rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.4rem;
+}
+
+@media (min-width: 640px) {
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 3.5rem;
+    padding-top: 0.75rem;
+  }
+}
+
+/* Tablets: iPad Mini portrait & small tablets (768px–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hospital-site-header {
+    --hospital-nav-item-gap: 0.28rem;
+    --hospital-nav-align: center;
+  }
+
+  .hospital-site-header .hospital-nav-list {
+    flex-wrap: nowrap;
+    gap: var(--hospital-nav-item-gap);
+    justify-content: center;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 14.5px !important;
+    font-weight: 450 !important;
+    padding: 0.4rem 0.5rem !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 2.85rem !important;
+    max-width: min(34vw, 160px) !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: none !important;
+    gap: 0.25rem;
+  }
+
+  .hospital-main-navbar__inner {
+    gap: 0.25rem;
+  }
+}
+
+/* Tablets: iPad landscape / medium tablets (1024px–1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hospital-site-header {
+    --hospital-nav-item-gap: 0.4rem;
+  }
+
+  .hospital-site-header .hospital-nav-list {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 3.25rem !important;
+    max-width: min(100%, 220px) !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: translate(0.25rem, 0.1rem);
+  }
+}
+
+/* Desktop: logo left, nav centered in header, profile/actions right */
+@media (min-width: 768px) {
+  .hospital-main-navbar__inner--centered {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto) minmax(0, 1fr);
+    column-gap: 1.25rem;
+    align-items: center;
+  }
+
+  .hospital-main-navbar__inner--centered > .hospital-header-logo {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .hospital-main-navbar__inner--centered > .hospital-nav-menu-wrap {
+    display: contents;
+  }
+
+  .hospital-main-navbar__inner--centered .hospital-nav-menu-wrap__desktop {
+    grid-column: 2;
+    justify-self: center;
+    max-width: 100%;
+    padding-inline-end: 0.5rem;
+  }
+
+  .hospital-main-navbar__inner--centered .hospital-header-actions {
+    grid-column: 3;
+    justify-self: end;
+    z-index: 120;
+    isolation: isolate;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 5.5rem;
+    padding-top: 2.9rem;
+  }
+}
+
+/* Restored brand logo styling in natural flex-flow (flat brand logo, vertically centered across levels on desktop) */
+.hospital-site-header .hospital-header-logo {
+  display: flex !important;
+  align-items: center !important;
+  align-self: center !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: translateY(-0.35rem) !important;
+  z-index: 100 !important;
+  width: auto !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.hospital-site-header .hospital-header-logo img {
+  display: block !important;
+  height: 2.5rem !important;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  transition: all 0.2s ease-in-out !important;
+  transform: none !important;
+  padding: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  .hospital-site-header .hospital-header-logo {
+    margin-top: -36px !important;
+    margin-bottom: -10px !important;
+  }
+  .hospital-site-header .hospital-header-logo img {
+    height: 5rem !important; /* ~80px: Centered between top-bar and navbar */
+  }
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-header-logo {
+    margin-top: -44px !important;
+    margin-bottom: -12px !important;
+  }
+  .hospital-site-header .hospital-header-logo img {
+    height: 6rem !important; /* ~96px: Beautiful spanning height */
+  }
+}
+
+@media (min-width: 1536px) {
+  .hospital-site-header .hospital-header-logo {
+    margin-top: -48px !important;
+    margin-bottom: -15px !important;
+  }
+  .hospital-site-header .hospital-header-logo img {
+    height: 6.5rem !important; /* ~104px: Bold premium logo */
+  }
+}
+
+.hospital-site-header .hospital-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: var(--hospital-nav-align);
+  gap: var(--hospital-nav-item-gap);
+}
+
+.hospital-site-header .hospital-nav-list > li {
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Let desktop dropdowns extend below the nav row */
+.hospital-site-header .hospital-main-navbar,
+.hospital-site-header .hospital-main-navbar__inner,
+.hospital-site-header .hospital-header-main-row nav {
+  overflow: visible;
+}
+
+/* Profile + three-dots — nudge toward the right edge */
+.hospital-site-header .hospital-header-actions {
+  position: relative;
+  z-index: 45;
+  margin-left: 0.5rem;
+  transform: translate(0.65rem, 0.15rem);
+  pointer-events: auto;
+}
+
+.hospital-site-header .hospital-more-menu__trigger {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.btn-book-appointment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.35rem;
+  background: #0d4f9d;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 14px 26px rgba(12, 74, 135, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-book-appointment:hover {
+  transform: translateY(-1px);
+  background: #0b4177;
+  box-shadow: 0 20px 30px rgba(12, 74, 135, 0.22);
+}
+
+.btn-book-appointment::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: calc(100% - 0.6rem);
+  height: 0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: #10a8a1;
+}
+
+/* Hamburger (three lines) — navy → purple gradient like reference */
+.hospital-more-menu__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hospital-more-menu__line {
+  display: block;
+  height: 2px;
+  width: 1.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #134e97 0%, #7c3aed 100%);
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-header-actions {
+    transform: translate(0.85rem, 0.2rem);
+  }
+}
+
+/* ========== Mobile header layout ========== */
+.hospital-site-header {
+  --hospital-header-h: 7.5rem;
+}
+
+@media (min-width: 640px) {
+  .hospital-site-header {
+    --hospital-header-h: 8.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hospital-site-header {
+    --hospital-header-h: 9rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hospital-site-header {
+    --hospital-header-h: 10.5rem;
+  }
+}
+
+.hospital-top-bar__inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.hospital-top-bar__helpline-mobile {
+  display: none;
+}
+
+.hospital-top-bar__helpline-desktop {
+  display: inline;
+}
+
+.hospital-main-navbar__inner {
+  min-height: 3.25rem;
+}
+
+@media (max-width: 767px) {
+  .hospital-site-header__container {
+    padding-inline: 12px !important;
+  }
+
+  .hospital-top-bar__inner {
+    gap: 0.375rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+  }
+
+  .hospital-top-bar__helpline {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .hospital-top-bar__helpline-desktop {
+    display: none;
+  }
+
+  .hospital-top-bar__helpline-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    line-height: 1.2;
+  }
+
+  .hospital-top-bar__helpline-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #174d95;
+  }
+
+  .hospital-top-bar__helpline-mobile a {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+  }
+
+  .hospital-site-header p,
+  .hospital-site-header p a {
+    font-size: 0.75rem !important;
+  }
+
+  .hospital-site-header .hospital-top-bar__book.btn-book-appointment {
+    flex: 0 1 auto;
+    max-width: 9.25rem;
+    font-size: 0.625rem !important;
+    padding: 0.45rem 0.5rem !important;
+    margin-top: 0 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+    hyphens: none;
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 3.35rem !important;
+    max-width: min(54vw, 192px) !important;
+  }
+
+  .hospital-main-navbar {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  .hospital-main-navbar__inner {
+    min-height: 3rem;
+    align-items: center;
+  }
+
+  .hospital-header-mobile-actions .hospital-user-nav__trigger {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    padding: 0.125rem;
+  }
+
+  .hospital-header-mobile-actions .hospital-user-nav__avatar {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
+  .hospital-header-mobile-actions {
+    position: relative;
+    z-index: 60;
+  }
+
+  .hospital-header-mobile-actions button[aria-label*="menu"] {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+.hospital-mobile-nav__toggle {
+  position: relative;
+  z-index: 61;
+  color: #134e97;
+}
+
+.hospital-mobile-nav__toggle--open {
+  color: #134e97;
+  background: rgba(19, 78, 151, 0.08);
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .hospital-site-header .hospital-top-bar__book.btn-book-appointment {
+    max-width: none;
+    font-size: 0.6875rem !important;
+    padding: 0.5rem 0.75rem !important;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) {
+  .hospital-top-bar__inner {
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .hospital-top-bar__inner::before {
+    content: "";
+    flex: 1 1 auto;
+    display: block;
+  }
+
+  .hospital-site-header .hospital-top-bar__book.btn-book-appointment {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 992px) {
+  .hospital-top-bar__inner::before {
+    display: none;
+  }
+
+  .hospital-top-bar__inner {
+    justify-content: flex-end;
+    gap: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* User profile pill */
+.hospital-user-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(19, 78, 151, 0.18);
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(19, 78, 151, 0.08);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.hospital-user-nav__trigger:hover {
+  border-color: rgba(6, 173, 198, 0.45);
+  box-shadow: 0 4px 14px rgba(19, 78, 151, 0.12);
+}
+
+.hospital-user-nav__avatar {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(135deg, #05dcfb, #06adc6 45%, #134e97);
+}
+
+.hospital-user-nav__photo,
+.hospital-user-nav__avatar-fallback {
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.hospital-user-nav__photo {
+  border: 2px solid #fff;
+}
+
+.hospital-user-nav__avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #134e97, #013473);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.hospital-user-nav__name {
+  max-width: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #134e97;
+}
+
+.hospital-user-nav__chevron {
+  height: 1rem;
+  width: 1rem;
+  flex-shrink: 0;
+  color: #134e97;
+  transition: transform 0.2s ease;
+}
+
+/* Default app header: always show name + chevron */
+.hospital-user-nav:not(.hospital-user-nav--site) .hospital-user-nav__trigger {
+  min-width: 0;
+  padding: 0.35rem 0.85rem 0.35rem 0.35rem;
+}
+
+.hospital-user-nav:not(.hospital-user-nav--site) .hospital-user-nav__avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+/* Hospital site: hide name on mobile/tablet */
+.hospital-site-header .hospital-user-nav--site .hospital-user-nav__name,
+.hospital-site-header .hospital-user-nav--site .hospital-user-nav__chevron {
+  display: none;
+}
+
+.hospital-user-nav__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Hospital header: icon only below xl; full pill on desktop */
+.hospital-site-header .hospital-user-nav--site .hospital-user-nav__trigger {
+  padding: 0.2rem;
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-user-nav--site .hospital-user-nav__trigger {
+    min-width: 0;
+    padding: 0.35rem 0.85rem 0.35rem 0.35rem;
+    gap: 0.625rem;
+  }
+
+  .hospital-site-header .hospital-user-nav--site .hospital-user-nav__avatar {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .hospital-site-header .hospital-user-nav--site .hospital-user-nav__name {
+    display: inline;
+  }
+
+  .hospital-site-header .hospital-user-nav--site .hospital-user-nav__chevron {
+    display: block;
+  }
+}
+
+/* Login — icon only on phone/tablet, label on desktop */
+.hospital-site-header .hospital-login-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem;
+}
+
+.hospital-site-header .hospital-login-btn__label {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-login-btn {
+    min-width: 0;
+    padding: 0.5rem 1rem;
+  }
+
+  .hospital-site-header .hospital-login-btn__label {
+    display: inline;
+  }
+}
+
+.hospital-site-header .hospital-accent-bar {
+  height: 2px;
+  background: linear-gradient(90deg, #06adc6 0%, #06adc6 72%, #013473 100%);
+}
+
+/* Nav dropdown — navy panel + cyan top bar (brainshospital.com) */
+.hospital-site-header .hospital-nav-dropdown {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  padding-top: 3px;
+  z-index: 110;
+  width: max-content;
+  min-width: 22rem;
+  max-width: min(92vw, 26rem);
+  background: #013473;
+  border-top: 3px solid #06adc6;
+  /* Downward-only shadow — avoids grey glow under nav links on hover */
+  box-shadow: 0 8px 18px -8px rgba(1, 31, 65, 0.28);
+  padding: 0.35rem 0 0.5rem;
+  animation: hospitalNavDropdownIn 0.22s ease-out forwards;
+  transform-origin: top left;
+}
+
+.hospital-site-header .hospital-nav-dropdown--mega {
+  min-width: 520px;
+  max-width: min(92vw, 520px);
+  padding: 0.5rem 0 0.65rem;
+}
+
+/* Mega menu (e.g. SPECIALITIES): open under link, biased right — avoids Brains logo on the left */
+.hospital-site-header .hospital-nav-dropdown--mega-anchor {
+  left: 0;
+  right: auto;
+  transform-origin: top left;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hospital-site-header .hospital-nav-dropdown--mega {
+    min-width: min(520px, calc(100vw - 12rem));
+  }
+}
+
+/* Right-side nav items: grow left so panel does not cover profile/actions */
+.hospital-site-header .hospital-nav-dropdown--align-end {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+
+.hospital-site-header .hospital-nav-dropdown--align-end:not(.hospital-nav-dropdown--mega) {
+  min-width: 11rem;
+  max-width: min(92vw, 20rem);
+}
+
+.hospital-site-header .hospital-nav-dropdown__item {
+  display: block;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.hospital-site-header .hospital-nav-dropdown__item:hover {
+  background-color: rgba(6, 173, 198, 0.22);
+  color: #fff;
+}
+
+.hospital-site-header .hospital-nav-dropdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Three-dots menu — left sidebar drawer */
+.hospital-side-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(15, 23, 42, 0.45);
+  cursor: pointer;
+  animation: hospitalDrawerFadeIn 0.2s ease-out;
+}
+
+.hospital-side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 201;
+  width: min(88vw, 400px);
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #134e97 0%, #0f5a9c 28%, #06adc6 72%, #4ec4d8 100%);
+  box-shadow: -8px 0 32px rgba(1, 31, 65, 0.35);
+  animation: hospitalDrawerSlideIn 0.28s ease-out;
+}
+
+.hospital-side-drawer__close {
+  align-self: flex-start;
+  margin: 1rem 1rem 0.5rem;
+  padding: 0.35rem;
+  color: rgba(255, 255, 255, 0.95);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.hospital-side-drawer__close:hover {
+  color: #fff;
+}
+
+.hospital-side-drawer__close svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  stroke-width: 1.5;
+}
+
+.hospital-side-drawer__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0 2rem;
+}
+
+.hospital-side-drawer__link {
+  display: block;
+  padding: 1.1rem 1.75rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(1, 31, 65, 0.35);
+  transition: background-color 0.15s ease;
+}
+
+.hospital-side-drawer__link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+@keyframes hospitalDrawerFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hospitalDrawerSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hospitalMobileBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hospitalMobileNavSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hospitalMobileNavItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hospitalNavDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile nav drawer — solid blue panel (matches hospital site) */
+.hospital-mobile-nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  top: var(--hospital-header-h, 120px);
+  background: rgba(15, 23, 42, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hospital-mobile-nav__backdrop--in {
+  animation: hospitalMobileBackdropIn 0.28s ease-out forwards;
+}
+
+.hospital-mobile-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hospital-header-h, 120px);
+  z-index: 56;
+  max-height: calc(100vh - var(--hospital-header-h, 120px));
+  max-height: calc(100dvh - var(--hospital-header-h, 120px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #004a8d;
+  box-shadow: 0 12px 40px rgba(1, 31, 65, 0.25);
+  transform-origin: top center;
+}
+
+.hospital-mobile-nav--in {
+  animation: hospitalMobileNavSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hospital-mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0 0.5rem;
+}
+
+.hospital-mobile-nav__list--secondary {
+  padding-bottom: 1.25rem;
+}
+
+.hospital-mobile-nav__group {
+  margin: 0;
+  padding: 0;
+  animation: hospitalMobileNavItemIn 0.35s ease-out backwards;
+}
+
+.hospital-mobile-nav__group:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.hospital-mobile-nav__group:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.hospital-mobile-nav__group:nth-child(3) {
+  animation-delay: 0.11s;
+}
+
+.hospital-mobile-nav__group:nth-child(4) {
+  animation-delay: 0.14s;
+}
+
+.hospital-mobile-nav__group:nth-child(5) {
+  animation-delay: 0.17s;
+}
+
+.hospital-mobile-nav__group:nth-child(6) {
+  animation-delay: 0.2s;
+}
+
+.hospital-mobile-nav__list--secondary .hospital-mobile-nav__group,
+.hospital-mobile-nav__list--secondary > li {
+  animation: hospitalMobileNavItemIn 0.35s ease-out backwards;
+}
+
+.hospital-mobile-nav__list--secondary > li:nth-child(1) {
+  animation-delay: 0.24s;
+}
+
+.hospital-mobile-nav__list--secondary > li:nth-child(2) {
+  animation-delay: 0.27s;
+}
+
+.hospital-mobile-nav__list--secondary > li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.hospital-mobile-nav__list--secondary > li:nth-child(4) {
+  animation-delay: 0.33s;
+}
+
+.hospital-mobile-nav__row {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 3rem;
+}
+
+.hospital-mobile-nav__label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0.5rem 0.85rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #fff;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: background-color 0.15s ease;
+}
+
+.hospital-mobile-nav__label--solo {
+  width: 100%;
+  padding-right: 1.25rem;
+}
+
+.hospital-mobile-nav__label:hover,
+.hospital-mobile-nav__label:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.hospital-mobile-nav__chevron-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3rem;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.hospital-mobile-nav__chevron-btn:hover,
+.hospital-mobile-nav__chevron-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Solid white caret (matches hospital site mobile nav) */
+.hospital-mobile-nav__caret {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hospital-mobile-nav__caret--open {
+  transform: rotate(180deg);
+}
+
+/* Hamburger → X morph */
+.hospital-mobile-nav__burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1.5rem;
+  height: 1.125rem;
+}
+
+.hospital-mobile-nav__burger-line {
+  display: block;
+  height: 2px;
+  width: 1.5rem;
+  background: #134e97;
+  border-radius: 999px;
+  transform-origin: center;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    width 0.2s ease;
+}
+
+.hospital-mobile-nav__burger--open .hospital-mobile-nav__burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hospital-mobile-nav__burger--open .hospital-mobile-nav__burger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hospital-mobile-nav__burger--open .hospital-mobile-nav__burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Accordion dropdown */
+.hospital-mobile-nav__sub-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 0.75rem;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.3s ease;
+}
+
+.hospital-mobile-nav__sub-wrap--open {
+  grid-template-rows: 1fr;
+  padding: 0 0.75rem 0.65rem;
+}
+
+.hospital-mobile-nav__sub-wrap > .hospital-mobile-nav__sub {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hospital-mobile-nav__sub {
+  margin: 0;
+  padding: 0.35rem 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(6, 173, 198, 0.75);
+  border-radius: 2px;
+  box-sizing: border-box;
+  max-height: min(50vh, 320px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  transition: opacity 0.22s ease 0.06s;
+}
+
+.hospital-mobile-nav__sub-wrap--open .hospital-mobile-nav__sub {
+  opacity: 1;
+}
+
+.hospital-mobile-nav__sub-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #fff;
+  text-decoration: none !important;
+  text-transform: none;
+  letter-spacing: normal;
+  transition: background-color 0.15s ease;
+}
+
+.hospital-mobile-nav__sub-link + .hospital-mobile-nav__sub-link {
+  margin-top: 0.125rem;
+}
+
+.hospital-mobile-nav__sub-link:hover,
+.hospital-mobile-nav__sub-link:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hospital-mobile-nav__backdrop--in,
+  .hospital-mobile-nav--in,
+  .hospital-mobile-nav__group,
+  .hospital-mobile-nav__list--secondary > li,
+  .hospital-site-header .hospital-nav-dropdown {
+    animation: none;
+  }
+
+  .hospital-mobile-nav__sub-wrap {
+    transition: none;
+  }
+
+  .hospital-mobile-nav__sub {
+    opacity: 1;
+    transition: none;
+  }
+
+  .hospital-mobile-nav__caret,
+  .hospital-mobile-nav__burger-line {
+    transition: none;
+  }
+}
+
+/* Strict Typography, Theme & Layout overrides matching custom.css exactly */
+
+/* 1. 24/7 Helpline (top bar) — dedicated selectors */
+.hospital-site-header .hospital-top-bar__helpline,
+.hospital-site-header .hospital-top-bar__helpline-desktop,
+.hospital-site-header .hospital-top-bar__helpline-mobile,
+.hospital-site-header .hospital-top-bar__helpline a {
+  font-family: 'roboto-regular', sans-serif !important;
+  color: #174d95 !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  letter-spacing: normal !important;
+  text-decoration: none !important;
+  line-height: 1.35 !important;
+}
+
+/* Legacy: other header paragraphs (if any) */
+.hospital-site-header p:not(.hospital-top-bar__helpline),
+.hospital-site-header p:not(.hospital-top-bar__helpline) a {
+  font-family: 'roboto-regular', sans-serif !important;
+  color: #174d95 !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+/* 2. Brand Booking Button override to perfectly match .top-con a */
+.hospital-site-header .btn-book-appointment {
+  font-family: 'roboto-regular', sans-serif !important;
+  background: #134e97 !important;
+  padding: 10px 20px !important;
+  color: #fffeff !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+  text-decoration: none !important;
+  border-bottom: 5px solid #06adc6 !important;
+  min-height: 0 !important;
+  letter-spacing: normal !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+  transform: none !important;
+  margin-top: -12px !important;
+}
+
+.hospital-site-header .btn-book-appointment::after {
+  display: none !important;
+}
+
+.hospital-site-header .btn-book-appointment:hover {
+  background: #104382 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* 1200–1499px: slightly smaller book button; helpline stays readable */
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .hospital-site-header .hospital-top-bar__helpline,
+  .hospital-site-header .hospital-top-bar__helpline-desktop,
+  .hospital-site-header .hospital-top-bar__helpline-mobile,
+  .hospital-site-header .hospital-top-bar__helpline a {
+    font-size: 17px !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    font-size: 15px !important;
+  }
+}
+
+/* 3. Navigation Bar Links styling matching .nav-item a exactly */
+.hospital-site-header .hospital-nav-link {
+  font-family: 'roboto-regular', sans-serif !important;
+  font-size: 16px !important; /* Default desktop size matching custom.css */
+  font-weight: 450 !important;
+  color: #000000 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  padding: 8px 16px !important;
+  transition: color 0.15s ease-in-out !important;
+  opacity: 1 !important;
+}
+
+.hospital-site-header .hospital-nav-link:hover {
+  color: #06adc6 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  background: transparent !important;
+}
+
+/* iPad Mini — top bar typography */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hospital-site-header p,
+  .hospital-site-header p a,
+  .hospital-site-header .btn-book-appointment {
+    font-size: 14px !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    padding: 8px 14px !important;
+    margin-top: -8px !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hospital-site-header .hospital-nav-link {
+    font-size: 15px !important;
+    font-weight: 450 !important;
+    padding: 0.45rem 0.55rem !important;
+    letter-spacing: 0.03em !important;
+  }
+}
+
+/* Responsive font sizes for navigation links matching custom.css media queries */
+@media (min-width: 1100px) and (max-width: 1199px) {
+  .hospital-site-header .hospital-nav-link {
+    font-size: 15px !important;
+    padding: 8px 12px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hospital-site-header .hospital-nav-link {
+    font-size: 16px !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* 4. Megamenu & Dropdown Panel overrides matching .dropdown-menu */
+.hospital-site-header .hospital-nav-dropdown {
+  background: #124e96 !important;
+  /* Matches original dropdown-menu background */
+  border-top: 5px solid #06adc6 !important;
+  /* Matches 5px top cyan border */
+  box-shadow: 0 8px 18px -8px rgba(18, 78, 150, 0.22) !important;
+}
+
+.hospital-site-header .hospital-nav-dropdown__item {
+  font-family: 'roboto-regular', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #ffffff !important;
+  padding: 8px 24px !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+.hospital-site-header .hospital-nav-dropdown__item:hover {
+  background-color: transparent !important;
+  color: #06adc6 !important;
+  /* Matches hover color change from custom.css */
+}
+
+/* 5. Mobile Drawer Links matching .aside-list .dropdown a */
+.hospital-side-drawer {
+  background: linear-gradient(110deg, #04498e, #0d72aa) !important;
+}
+
+.hospital-side-drawer__link {
+  font-family: 'roboto-light', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  color: #ffffff !important;
+  padding: 12px 30px !important;
+  border-bottom: 1px solid #04619e !important;
+}
+
+.hospital-side-drawer__link:hover {
+  background-color: transparent !important;
+  color: #06adc6 !important;
+}
+
+/* Nest Hub–class short viewports (below 1024 width only) */
+@media (min-width: 900px) and (max-width: 1019px) and (max-height: 860px) {
+  .hospital-site-header .hospital-header-logo {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    transform: none !important;
+    align-self: center !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 2.5rem !important;
+    max-width: min(42vw, 170px) !important;
+  }
+
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 2.75rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .hospital-main-navbar__inner--centered {
+    column-gap: 0.5rem;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 0.6875rem !important;
+    padding: 0.35rem 0.3rem !important;
+    letter-spacing: 0.02em;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: none !important;
+    gap: 0.2rem;
+  }
+
+  .hospital-top-bar__inner {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.6875rem !important;
+    margin-top: 0 !important;
+  }
+
+  .hospital-top-bar__helpline-desktop,
+  .hospital-top-bar__helpline-mobile {
+    font-size: 0.75rem;
+  }
+}
+
+/* Nest Hub Max — slightly larger header than Nest Hub */
+@media (min-width: 1100px) and (max-height: 860px) {
+  .hospital-site-header .hospital-header-logo img {
+    height: 2.85rem !important;
+    max-width: min(36vw, 200px) !important;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.4rem !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  .hospital-main-navbar__inner--centered {
+    column-gap: 0.65rem;
+  }
+}
+
+/* 6. Layout Resets to Stack Level 1 & Level 2 Naturally without absolute offsets */
+.hospital-main-navbar {
+  background: #ffffff !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.hospital-site-header .hospital-header-main-row {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  transform: none !important;
+}
+
+.hospital-site-header .hospital-header-actions {
+  transform: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    transform: translateY(-0.35rem) !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: none !important;
+  }
+
+  .hospital-site-header .hospital-header-main-row nav {
+    padding-top: 0 !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    transform: translateY(-0.35rem) !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: none !important;
+  }
+}
+
+/* ===============================================
+   Unified Responsive Ladder (max-width breakpoints)
+   1440, 1366, 1200, 991, 767, 575, 480, 360
+   =============================================== */
+
+@media (min-width: 1367px) and (max-width: 1440px) {
+  .hospital-site-header__container {
+    max-width: 1320px !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 5.5rem !important;
+    max-width: min(26vw, 210px) !important;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 1rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+/* Laptop / tablet landscape 1024–1366px: logo + larger nav (ABOUT … MEDIA) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .hospital-site-header {
+    --hospital-nav-item-gap: 0.3rem;
+    --hospital-nav-align: center;
+  }
+
+  .hospital-site-header__container {
+    max-width: 1280px !important;
+    padding-inline: 14px !important;
+  }
+
+  .hospital-main-navbar__inner--centered {
+    column-gap: 0.75rem;
+    grid-template-columns: minmax(9rem, auto) minmax(0, 1fr) minmax(0, auto);
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    margin-top: -22px !important;
+    margin-bottom: -6px !important;
+    transform: none !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 4rem !important;
+    max-width: min(28vw, 200px) !important;
+  }
+
+  .hospital-site-header .hospital-nav-list {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: var(--hospital-nav-item-gap);
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 15px !important;
+    font-weight: 450 !important;
+    padding: 0.45rem 0.55rem !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    transform: none !important;
+    gap: 0.35rem;
+    margin-left: 0.25rem;
+  }
+
+  .hospital-site-header .hospital-top-bar__helpline,
+  .hospital-site-header .hospital-top-bar__helpline-desktop,
+  .hospital-site-header .hospital-top-bar__helpline-mobile,
+  .hospital-site-header .hospital-top-bar__helpline a {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    font-size: 0.8125rem !important;
+    padding: 0.5rem 0.9rem !important;
+  }
+}
+
+/* Below 1024 only — do not shrink nav on 1024px+ laptops */
+@media (max-width: 1019px) {
+  .hospital-site-header__container {
+    max-width: 1140px !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 4.1rem !important;
+    max-width: min(30vw, 220px) !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    font-size: 0.72rem !important;
+    padding: 0.48rem 0.8rem !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hospital-site-header {
+    --hospital-header-h: 8.1rem;
+    --hospital-nav-item-gap: 0.22rem;
+  }
+
+  .hospital-site-header__container {
+    padding-inline: 12px !important;
+  }
+
+  .hospital-main-navbar__inner--centered {
+    column-gap: 0.45rem;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .hospital-site-header .hospital-header-logo {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 4rem !important;
+    max-width: min(40vw, 210px) !important;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 15px !important;
+    font-weight: 450 !important;
+    padding: 0.4rem 0.42rem !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .hospital-site-header .hospital-header-actions {
+    gap: 0.2rem;
+    margin-left: 0.2rem;
+  }
+}
+
+/* 768–991: desktop nav visible — larger logo + ABOUT…MEDIA */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hospital-site-header .hospital-header-logo {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 4.1rem !important;
+    max-width: min(38vw, 220px) !important;
+  }
+
+  .hospital-site-header .hospital-nav-list {
+    gap: 0.22rem;
+  }
+
+  .hospital-site-header .hospital-nav-link {
+    font-size: 15px !important;
+    font-weight: 450 !important;
+    padding: 0.4rem 0.45rem !important;
+    letter-spacing: 0.03em !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hospital-site-header {
+    --hospital-header-h: 7.15rem;
+  }
+
+  .hospital-site-header__container {
+    padding-inline: 10px !important;
+  }
+
+  .hospital-top-bar__inner {
+    min-height: 2.15rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    gap: 0.4rem;
+  }
+
+  .hospital-main-navbar {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 2.8rem !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 2.4rem !important;
+    max-width: min(56vw, 165px) !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    min-height: 2.2rem;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.04em;
+    padding: 0.4rem 0.62rem !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .hospital-site-header {
+    --hospital-header-h: 6.9rem;
+  }
+
+  .hospital-site-header__container {
+    padding-inline: 8px !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 2.15rem !important;
+    max-width: min(58vw, 152px) !important;
+  }
+
+  .hospital-top-bar__helpline-mobile,
+  .hospital-top-bar__helpline-mobile a {
+    font-size: 0.72rem !important;
+    line-height: 1.25;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    min-height: 2.05rem;
+    font-size: 0.61rem !important;
+    padding: 0.34rem 0.55rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hospital-site-header {
+    --hospital-header-h: 6.55rem;
+  }
+
+  .hospital-site-header__container {
+    padding-inline: 7px !important;
+  }
+
+  .hospital-top-bar__inner {
+    min-height: 2rem;
+    padding-top: 0.28rem;
+    padding-bottom: 0.28rem;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 2rem !important;
+    max-width: min(60vw, 140px) !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    min-height: 1.95rem;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.03em;
+    padding: 0.3rem 0.48rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .hospital-site-header {
+    --hospital-header-h: 6.2rem;
+  }
+
+  .hospital-site-header__container {
+    padding-inline: 6px !important;
+  }
+
+  .hospital-site-header .hospital-header-main-row {
+    min-height: 2.55rem !important;
+  }
+
+  .hospital-site-header .hospital-header-logo img {
+    height: 1.85rem !important;
+    max-width: min(62vw, 126px) !important;
+  }
+
+  .hospital-top-bar__helpline-mobile,
+  .hospital-top-bar__helpline-mobile a {
+    font-size: 0.66rem !important;
+  }
+
+  .hospital-site-header .btn-book-appointment {
+    min-height: 1.82rem;
+    font-size: 0.54rem !important;
+    letter-spacing: 0.02em;
+    padding: 0.28rem 0.42rem !important;
+  }
+}

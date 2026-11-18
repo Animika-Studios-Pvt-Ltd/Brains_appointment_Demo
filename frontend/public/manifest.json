@@ -1,0 +1,20 @@
+{
+  "name": "Brains Super Speciality Hospital",
+  "short_name": "Brains",
+  "description": "Book appointments with Brains Super Speciality Hospital",
+  "start_url": "/patient/DoctorListPage",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
+  "orientation": "portrait-primary",
+  "categories": ["health", "medical"],
+  "icons": [
+    {
+      "src": "/images/brains-logo.png",
+      "sizes": "195x127",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
