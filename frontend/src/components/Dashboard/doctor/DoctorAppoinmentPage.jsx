@@ -1155,7 +1155,7 @@ export default function DoctorAppointmentPage() {
           key: orderData.keyId,
           amount: orderData.amount,
           currency: orderData.currency || "INR",
-          name: "Brains Hospital",
+          name: "Appointment Scheduler",
           description: `Video Consultation with Dr. ${doctor.name}`,
           order_id: orderData.orderId,
           handler: async function (response) {
@@ -1337,7 +1337,7 @@ export default function DoctorAppointmentPage() {
         Please contact the support team/receptionist for further assistance.
         <div style="margin-top:10px; font-size:0.9em; color:#374151;">
           Call: <strong>+91 9148080000</strong><br/>
-          Email: <strong>callcenter@brains.org.in</strong>
+          Email: <strong>support@appointmentportal.com</strong>
         </div>
       `,
           showCloseButton: true,
@@ -1548,7 +1548,9 @@ export default function DoctorAppointmentPage() {
           </div>
 
           <div className="book-doctor-card__brand">
-            <img src="/images/brains-logo.png" alt="Brains Hospital" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#134e97] bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-full">
+              Verified Doctor
+            </span>
           </div>
         </div>
 

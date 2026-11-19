@@ -1,7 +1,9 @@
-/* Patient book-appointment page — Lumos-style layout */
-/* Width aligns with .hospital-site-header__container on the same wrapper (logo → hamburger) */
+/* Patient book-appointment page — layout with balanced left/right margins */
 .book-appointment-page .book-appointment-page__content {
   width: 100%;
+  max-width: 1440px !important;
+  margin-inline: auto !important;
+  padding-inline: clamp(1.5rem, 5vw, 4rem) !important;
   box-sizing: border-box;
 }
 

@@ -7,6 +7,7 @@ import {
   User,
   LayoutDashboard,
   LogOut,
+  CalendarDays,
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { performLogout, verifyAuthToken } from "../../utils/api";
@@ -20,8 +21,75 @@ import {
 import "./brains-header.css";
 
 const DOCTOR_LIST_PATH = "/patient/DoctorListPage";
-const HELPLINE_TEL = "tel:+919148080000";
-const HELPLINE_DISPLAY = "HELPLINE: +91 91480 80000";
+
+const DUMMY_NAV_ITEMS = [
+  {
+    id: "doctors",
+    label: "FIND DOCTORS",
+    href: DOCTOR_LIST_PATH,
+    isLink: true,
+  },
+  {
+    id: "specialties",
+    label: "SPECIALTIES",
+    columns: 2,
+    items: [
+      { label: "Cardiology", href: "#" },
+      { label: "Neurology", href: "#" },
+      { label: "Orthopedics", href: "#" },
+      { label: "General Medicine", href: "#" },
+      { label: "Pediatrics", href: "#" },
+      { label: "Dermatology", href: "#" },
+      { label: "Oncology", href: "#" },
+      { label: "ENT & Ophthalmology", href: "#" },
+    ],
+  },
+  {
+    id: "services",
+    label: "SERVICES",
+    columns: 1,
+    items: [
+      { label: "OPD Consultations", href: "#" },
+      { label: "24/7 Emergency Care", href: "#" },
+      { label: "Diagnostics & Pathology", href: "#" },
+      { label: "Radiology & Imaging", href: "#" },
+      { label: "Health Checkup Packages", href: "#" },
+    ],
+  },
+  {
+    id: "patient-care",
+    label: "PATIENT CARE",
+    columns: 1,
+    items: [
+      { label: "Admission Procedures", href: "#" },
+      { label: "Insurance & TPA Helpdesk", href: "#" },
+      { label: "Visitor Guidelines", href: "#" },
+      { label: "Discharge & Billing", href: "#" },
+      { label: "Patient Feedback", href: "#" },
+    ],
+  },
+  {
+    id: "about",
+    label: "ABOUT US",
+    columns: 1,
+    items: [
+      { label: "Hospital Overview", href: "#" },
+      { label: "Our Medical Team", href: "#" },
+      { label: "Infrastructure & Technology", href: "#" },
+      { label: "Quality & Safety Standards", href: "#" },
+    ],
+  },
+  {
+    id: "contact",
+    label: "CONTACT",
+    columns: 1,
+    items: [
+      { label: "Hospital Locations", href: "#" },
+      { label: "Emergency Contacts", href: "#" },
+      { label: "Feedback & Inquiries", href: "#" },
+    ],
+  },
+];
 
 function hasRealProfilePhoto(path) {
   if (!path || typeof path !== "string") return false;
@@ -197,398 +265,84 @@ const Header = () => {
   return (
     <header className="brains-header">
       <div className="container-fluid header-section">
-        <div className="row header-row">
-          {/* Left: Logo */}
-          <div className="col-xl-4 col-lg-3 col-md-4 col-sm-3 col-3 header-logo-col">
-            <Link to={DOCTOR_LIST_PATH} className="header-logo-link" title="Brains Super Speciality Hospital">
-              <img
-                src="/images/brains-logo.webp"
-                alt="BrainS Logo"
-                className="header-logo-img"
-              />
+        <div className="header-single-row">
+          {/* Left: Brand */}
+          <div className="header-brand-wrap">
+            <Link
+              to={DOCTOR_LIST_PATH}
+              className="header-logo-link flex flex-row items-center gap-2.5 no-underline group"
+              style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px", textDecoration: "none" }}
+              title="Appointment Scheduler">
+              <span className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-[#134e97] to-[#06adc6] text-white shadow-md shadow-[#134e97]/25 shrink-0 transition-transform group-hover:scale-105">
+                <CalendarDays className="h-5 w-5 sm:h-6 sm:w-6" />
+              </span>
+              <div className="flex flex-col text-left">
+                <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#134e97] leading-tight group-hover:text-[#06adc6] transition-colors whitespace-nowrap">
+                  Appointment Scheduler
+                </span>
+                <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-slate-400 whitespace-nowrap">
+                  Online Booking Portal
+                </span>
+              </div>
             </Link>
           </div>
 
-          {/* Right: Content */}
-          <div className="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-9 header-right-col">
-            {/* Top Row: Helpline, Book Appointment & Account */}
-            <div className="header-top-action">
-              <div className="header-helpline-group">
-                <img
-                  src="/images/24x7.webp"
-                  alt="24/7"
-                  className="header-helpline-img"
-                />
-                <div className="header-helpline-text">
-                  <a href={HELPLINE_TEL}>{HELPLINE_DISPLAY}</a>
-                </div>
-              </div>
-
-              <Link
-                to={DOCTOR_LIST_PATH}
-                className="header-book-btn"
-                title="book an appointment">
-                BOOK AN APPOINTMENT
-              </Link>
-
-              {user ? (
-                <UserNavPill user={user} onLogout={handleLogout} />
-              ) : (
-                <Link
-                  to="/login"
-                  className="header-login-btn"
-                  title="Login">
-                  <span className="header-login-icon-badge">
-                    <User className="h-3.5 w-3.5" />
-                  </span>
-                  <span>LOGIN</span>
-                </Link>
-              )}
-            </div>
-
-            {/* Bottom Row: Navigation */}
-            <nav className="header-nav">
-              <ul className="header-nav-list">
-                {/* ABOUT */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/Doctors.html">
-                    ABOUT <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu">
-                    <li>
-                      <a href="https://brainshospital.com/founder.html">Founder</a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Doctors.html">Doctors</a>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* SPECIALITIES */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/brains-hospital-specialities.html">
-                    SPECIALITIES <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu header-dropdown-2col">
-                    <li>
-                      <a href="https://brainshospital.com/brain-tumor-treatment-bangalore.html">
-                        Brain Tumor Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/spine-care-and-ortho-care-hospital-bangalore.html">
-                        Spine Care and Ortho Care
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/nerve-compression-treatment-bangalore.html">
-                        Nerve Compression Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/joint-and-bone-care-hospital.html">
-                        Joint and Bone Care Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Heart-Care.html">
-                        Heart Care Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Lung-Care.html">
-                        Lung Cancer Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/General-Medicine.html">
-                        General Medicine Doctor
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Critical-care-hospital-bangalore.html">
-                        Critical Care Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Vascular-Care.html">
-                        Vascular Care Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Epilepsy-Treatment.html">
-                        Epilepsy Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Surgical-Oncology.html">
-                        Surgical Oncology
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Orthopedic-Treatment.html">
-                        Orthopedic Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/neck-pain-treatment-bangalore.html">
-                        Neck Pain Treatment
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Parkinson-Disease.html">
-                        Parkinson Disease
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Brain-Tumor-Wing.html">
-                        Brain Tumor Wing
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Paediatric-Neuroscience.html">
-                        Paediatric Neuroscience
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Neuro-Nutrition.html">
-                        Neuro Nutrition
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Speech-Therapy.html">
-                        Speech Therapy
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* CLINICS */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/Parkinsons-Clinic.html">
-                    CLINICS <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu">
-                    <li>
-                      <a href="https://brainshospital.com/Parkinsons-Clinic.html">
-                        Parkinson's Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Vertigo-Clinic.html">
-                        Vertigo Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Spine-care-clinic.html">
-                        Spine Care Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Multiple-Sclerosis-Clinic.html">
-                        Multiple Sclerosis Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Craniofacial-Clinic.html">
-                        Craniofacial Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Alzheimers-and-Dementia-Clinic.html">
-                        Alzheimer's & Dementia Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Motor-Neuron-Disease.html">
-                        Motor Neuron Disease Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/stroke-brain-attack-clinic.html">
-                        Stroke (Brain Attack) Clinic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/ENT-clinic-at-brains-hospital.html">
-                        ENT Clinic at Brains Hospital
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Neuro-genetics-clinic-at-Brains-Hospital.html">
-                        Neuro Genetic Clinic
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* INPATIENT */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/Inpatient.html">
-                    INPATIENT <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu">
-                    <li>
-                      <a href="https://brainshospital.com/Admission-Procedures.html">
-                        Admission Procedures
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Important-Guidelines.html">
-                        Important Guidelines
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Registration.html">
-                        Registration
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/InsuranceMediclaim.html">
-                        Insurance/Mediclaim
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Food.html">Food</a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Discharge-Process.html">
-                        Discharge Process
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Feedback.html">
-                        Feedback
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* RESOURCES */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/Brain-Voice.html">
-                    RESOURCES <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu">
-                    <li>
-                      <a href="https://brainshospital.com/Brain-Voice.html">
-                        Brain Voice
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Articles-by-Dr-Venkataramana.html">
-                        Articles by Dr. Venkataramana
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/News-Brains.html">
-                        News @Brains
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Articles-by-Specialists.html">
-                        Articles by Specialists
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Brain-Wave-of-the-week.html">
-                        Brain Wave of the Week
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Basal-Ganglia-Support-Group.html">
-                        Basal Ganglia Support Group
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Brain-Attack-Stroke-Support-Group.html">
-                        Brain Attack (Stroke) Support Group
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/CSR.html">CSR</a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Intensive-Care-Unit.html">
-                        Intensive Care Unit
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/World-Health-Day.html">
-                        World Health Day
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Donate-and-gift-lives.html">
-                        Donate & Gift Lives
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Patient-Stories.html">
-                        Patient Stories
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Case-Studies.html">
-                        Case Studies
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Golden-HourSocial-Initiative.html">
-                        Golden Hour-Social Initiative
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Maitri-Program.html">
-                        Maitri Program
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* MEDIA */}
-                <li className="header-has-dropdown">
-                  <a href="https://brainshospital.com/Gallery.html">
-                    MEDIA <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="header-dropdown-menu">
-                    <li>
-                      <a href="https://brainshospital.com/Gallery.html">Gallery</a>
-                    </li>
-                    <li>
-                      <a href="https://brainshospital.com/Videos.html">Videos</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-
-              {/* Mobile-only Login / User pill placed side-by-side with Hamburger */}
-              <div className="header-mobile-login-wrap">
-                {user ? (
-                  <UserNavPill user={user} onLogout={handleLogout} />
+          {/* Center: Navigation */}
+          <nav className="header-nav">
+            <ul className="header-nav-list">
+              {DUMMY_NAV_ITEMS.map((item) =>
+                item.isLink ? (
+                  <li key={item.id}>
+                    <Link to={item.href}>{item.label}</Link>
+                  </li>
                 ) : (
-                  <Link
-                    to="/login"
-                    className="header-login-btn"
-                    title="Login">
-                    <span className="header-login-icon-badge">
-                      <User className="h-3.5 w-3.5" />
-                    </span>
-                    <span>LOGIN</span>
-                  </Link>
-                )}
-              </div>
+                  <li key={item.id} className="header-has-dropdown">
+                    <a href="#" onClick={(e) => e.preventDefault()}>
+                      {item.label} <i className="fas fa-chevron-down"></i>
+                    </a>
+                    <ul
+                      className={`header-dropdown-menu ${
+                        item.columns === 2 ? "header-dropdown-2col" : ""
+                      }`}>
+                      {item.items.map((sub, idx) => (
+                        <li key={idx}>
+                          <a href={sub.href} onClick={(e) => e.preventDefault()}>
+                            {sub.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                )
+              )}
+            </ul>
+          </nav>
 
-              {/* Hamburger Icon */}
-              <div
-                className="header-hamburger"
-                onClick={() => setSidebarOpen(true)}
-                title="Open menu">
-                <span className="header-hamburger-bar"></span>
-                <span className="header-hamburger-bar"></span>
-                <span className="header-hamburger-bar"></span>
-              </div>
-            </nav>
+          {/* Right: Login / Account & Hamburger */}
+          <div className="header-actions-wrap">
+            {user ? (
+              <UserNavPill user={user} onLogout={handleLogout} />
+            ) : (
+              <Link
+                to="/login"
+                className="header-login-btn"
+                title="Login">
+                <span className="header-login-icon-badge">
+                  <User className="h-3.5 w-3.5" />
+                </span>
+                <span>LOGIN</span>
+              </Link>
+            )}
+
+            {/* Hamburger Icon */}
+            <div
+              className="header-hamburger"
+              onClick={() => setSidebarOpen(true)}
+              title="Open menu">
+              <span className="header-hamburger-bar"></span>
+              <span className="header-hamburger-bar"></span>
+              <span className="header-hamburger-bar"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -608,239 +362,53 @@ const Header = () => {
         </div>
 
         <ul className="header-sidebar-nav-list">
-          {/* ABOUT */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "about" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/Doctors.html"
-              onClick={(e) => toggleSidebarDropdown("about", e)}>
-              <span>ABOUT</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "about"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu">
-              <li>
-                <a
-                  href="https://brainshospital.com/founder.html"
-                  onClick={() => setSidebarOpen(false)}>
-                  Founder
-                </a>
+          {DUMMY_NAV_ITEMS.map((item) =>
+            item.isLink ? (
+              <li key={item.id}>
+                <Link to={item.href} onClick={() => setSidebarOpen(false)}>
+                  {item.label}
+                </Link>
               </li>
-              <li>
+            ) : (
+              <li
+                key={item.id}
+                className={`header-has-dropdown mobile-nav-item ${
+                  openSidebarDropdown === item.id ? "active" : ""
+                }`}>
                 <a
-                  href="https://brainshospital.com/Doctors.html"
-                  onClick={() => setSidebarOpen(false)}>
-                  Doctors
+                  href="#"
+                  onClick={(e) => toggleSidebarDropdown(item.id, e)}>
+                  <span>{item.label}</span>
+                  <i
+                    className="fas fa-chevron-down"
+                    style={{
+                      transform:
+                        openSidebarDropdown === item.id
+                          ? "rotate(180deg)"
+                          : "rotate(0deg)",
+                    }}
+                  />
                 </a>
+                <ul
+                  className={`header-dropdown-menu ${
+                    item.columns === 2 ? "header-dropdown-2col" : ""
+                  }`}>
+                  {item.items.map((sub, idx) => (
+                    <li key={idx}>
+                      <a
+                        href={sub.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSidebarOpen(false);
+                        }}>
+                        {sub.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </li>
-            </ul>
-          </li>
-
-          {/* SPECIALITIES */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "specialities" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/brains-hospital-specialities.html"
-              onClick={(e) => toggleSidebarDropdown("specialities", e)}>
-              <span>SPECIALITIES</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "specialities"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu header-dropdown-2col">
-              <li><a href="https://brainshospital.com/brain-tumor-treatment-bangalore.html" onClick={() => setSidebarOpen(false)}>Brain Tumor Treatment</a></li>
-              <li><a href="https://brainshospital.com/spine-care-and-ortho-care-hospital-bangalore.html" onClick={() => setSidebarOpen(false)}>Spine Care and Ortho Care</a></li>
-              <li><a href="https://brainshospital.com/nerve-compression-treatment-bangalore.html" onClick={() => setSidebarOpen(false)}>Nerve Compression Treatment</a></li>
-              <li><a href="https://brainshospital.com/joint-and-bone-care-hospital.html" onClick={() => setSidebarOpen(false)}>Joint and Bone Care Treatment</a></li>
-              <li><a href="https://brainshospital.com/Heart-Care.html" onClick={() => setSidebarOpen(false)}>Heart Care Treatment</a></li>
-              <li><a href="https://brainshospital.com/Lung-Care.html" onClick={() => setSidebarOpen(false)}>Lung Cancer Treatment</a></li>
-              <li><a href="https://brainshospital.com/General-Medicine.html" onClick={() => setSidebarOpen(false)}>General Medicine Doctor</a></li>
-              <li><a href="https://brainshospital.com/Critical-care-hospital-bangalore.html" onClick={() => setSidebarOpen(false)}>Critical Care Treatment</a></li>
-              <li><a href="https://brainshospital.com/Vascular-Care.html" onClick={() => setSidebarOpen(false)}>Vascular Care Treatment</a></li>
-              <li><a href="https://brainshospital.com/Epilepsy-Treatment.html" onClick={() => setSidebarOpen(false)}>Epilepsy Treatment</a></li>
-              <li><a href="https://brainshospital.com/Surgical-Oncology.html" onClick={() => setSidebarOpen(false)}>Surgical Oncology</a></li>
-              <li><a href="https://brainshospital.com/Orthopedic-Treatment.html" onClick={() => setSidebarOpen(false)}>Orthopedic Treatment</a></li>
-              <li><a href="https://brainshospital.com/neck-pain-treatment-bangalore.html" onClick={() => setSidebarOpen(false)}>Neck Pain Treatment</a></li>
-              <li><a href="https://brainshospital.com/Parkinson-Disease.html" onClick={() => setSidebarOpen(false)}>Parkinson Disease</a></li>
-              <li><a href="https://brainshospital.com/Brain-Tumor-Wing.html" onClick={() => setSidebarOpen(false)}>Brain Tumor Wing</a></li>
-              <li><a href="https://brainshospital.com/Paediatric-Neuroscience.html" onClick={() => setSidebarOpen(false)}>Paediatric Neuroscience</a></li>
-              <li><a href="https://brainshospital.com/Neuro-Nutrition.html" onClick={() => setSidebarOpen(false)}>Neuro Nutrition</a></li>
-              <li><a href="https://brainshospital.com/Speech-Therapy.html" onClick={() => setSidebarOpen(false)}>Speech Therapy</a></li>
-            </ul>
-          </li>
-
-          {/* CLINICS */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "clinics" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/Parkinsons-Clinic.html"
-              onClick={(e) => toggleSidebarDropdown("clinics", e)}>
-              <span>CLINICS</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "clinics"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu">
-              <li><a href="https://brainshospital.com/Parkinsons-Clinic.html" onClick={() => setSidebarOpen(false)}>Parkinson's Clinic</a></li>
-              <li><a href="https://brainshospital.com/Vertigo-Clinic.html" onClick={() => setSidebarOpen(false)}>Vertigo Clinic</a></li>
-              <li><a href="https://brainshospital.com/Spine-care-clinic.html" onClick={() => setSidebarOpen(false)}>Spine Care Clinic</a></li>
-              <li><a href="https://brainshospital.com/Multiple-Sclerosis-Clinic.html" onClick={() => setSidebarOpen(false)}>Multiple Sclerosis Clinic</a></li>
-              <li><a href="https://brainshospital.com/Craniofacial-Clinic.html" onClick={() => setSidebarOpen(false)}>Craniofacial Clinic</a></li>
-              <li><a href="https://brainshospital.com/Alzheimers-and-Dementia-Clinic.html" onClick={() => setSidebarOpen(false)}>Alzheimer's & Dementia Clinic</a></li>
-              <li><a href="https://brainshospital.com/Motor-Neuron-Disease.html" onClick={() => setSidebarOpen(false)}>Motor Neuron Disease Clinic</a></li>
-              <li><a href="https://brainshospital.com/stroke-brain-attack-clinic.html" onClick={() => setSidebarOpen(false)}>Stroke (Brain Attack) Clinic</a></li>
-              <li><a href="https://brainshospital.com/ENT-clinic-at-brains-hospital.html" onClick={() => setSidebarOpen(false)}>ENT Clinic at Brains Hospital</a></li>
-              <li><a href="https://brainshospital.com/Neuro-genetics-clinic-at-Brains-Hospital.html" onClick={() => setSidebarOpen(false)}>Neuro Genetic Clinic</a></li>
-            </ul>
-          </li>
-
-          {/* INPATIENT */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "inpatient" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/Inpatient.html"
-              onClick={(e) => toggleSidebarDropdown("inpatient", e)}>
-              <span>INPATIENT</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "inpatient"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu">
-              <li><a href="https://brainshospital.com/Admission-Procedures.html" onClick={() => setSidebarOpen(false)}>Admission Procedures</a></li>
-              <li><a href="https://brainshospital.com/Important-Guidelines.html" onClick={() => setSidebarOpen(false)}>Important Guidelines</a></li>
-              <li><a href="https://brainshospital.com/Registration.html" onClick={() => setSidebarOpen(false)}>Registration</a></li>
-              <li><a href="https://brainshospital.com/InsuranceMediclaim.html" onClick={() => setSidebarOpen(false)}>Insurance/Mediclaim</a></li>
-              <li><a href="https://brainshospital.com/Food.html" onClick={() => setSidebarOpen(false)}>Food</a></li>
-              <li><a href="https://brainshospital.com/Discharge-Process.html" onClick={() => setSidebarOpen(false)}>Discharge Process</a></li>
-              <li><a href="https://brainshospital.com/Feedback.html" onClick={() => setSidebarOpen(false)}>Feedback</a></li>
-            </ul>
-          </li>
-
-          {/* RESOURCES */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "resources" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/Brain-Voice.html"
-              onClick={(e) => toggleSidebarDropdown("resources", e)}>
-              <span>RESOURCES</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "resources"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu">
-              <li><a href="https://brainshospital.com/Brain-Voice.html" onClick={() => setSidebarOpen(false)}>Brain Voice</a></li>
-              <li><a href="https://brainshospital.com/Articles-by-Dr-Venkataramana.html" onClick={() => setSidebarOpen(false)}>Articles by Dr. Venkataramana</a></li>
-              <li><a href="https://brainshospital.com/News-Brains.html" onClick={() => setSidebarOpen(false)}>News @Brains</a></li>
-              <li><a href="https://brainshospital.com/Articles-by-Specialists.html" onClick={() => setSidebarOpen(false)}>Articles by Specialists</a></li>
-              <li><a href="https://brainshospital.com/Brain-Wave-of-the-week.html" onClick={() => setSidebarOpen(false)}>Brain Wave of the Week</a></li>
-              <li><a href="https://brainshospital.com/Basal-Ganglia-Support-Group.html" onClick={() => setSidebarOpen(false)}>Basal Ganglia Support Group</a></li>
-              <li><a href="https://brainshospital.com/Brain-Attack-Stroke-Support-Group.html" onClick={() => setSidebarOpen(false)}>Brain Attack (Stroke) Support Group</a></li>
-              <li><a href="https://brainshospital.com/CSR.html" onClick={() => setSidebarOpen(false)}>CSR</a></li>
-              <li><a href="https://brainshospital.com/Intensive-Care-Unit.html" onClick={() => setSidebarOpen(false)}>Intensive Care Unit</a></li>
-              <li><a href="https://brainshospital.com/World-Health-Day.html" onClick={() => setSidebarOpen(false)}>World Health Day</a></li>
-              <li><a href="https://brainshospital.com/Donate-and-gift-lives.html" onClick={() => setSidebarOpen(false)}>Donate & Gift Lives</a></li>
-              <li><a href="https://brainshospital.com/Patient-Stories.html" onClick={() => setSidebarOpen(false)}>Patient Stories</a></li>
-              <li><a href="https://brainshospital.com/Case-Studies.html" onClick={() => setSidebarOpen(false)}>Case Studies</a></li>
-              <li><a href="https://brainshospital.com/Golden-HourSocial-Initiative.html" onClick={() => setSidebarOpen(false)}>Golden Hour-Social Initiative</a></li>
-              <li><a href="https://brainshospital.com/Maitri-Program.html" onClick={() => setSidebarOpen(false)}>Maitri Program</a></li>
-            </ul>
-          </li>
-
-          {/* MEDIA */}
-          <li
-            className={`header-has-dropdown mobile-nav-item ${
-              openSidebarDropdown === "media" ? "active" : ""
-            }`}>
-            <a
-              href="https://brainshospital.com/Gallery.html"
-              onClick={(e) => toggleSidebarDropdown("media", e)}>
-              <span>MEDIA</span>
-              <i
-                className="fas fa-chevron-down"
-                style={{
-                  transform:
-                    openSidebarDropdown === "media"
-                      ? "rotate(180deg)"
-                      : "rotate(0deg)",
-                }}
-              />
-            </a>
-            <ul className="header-dropdown-menu">
-              <li><a href="https://brainshospital.com/Gallery.html" onClick={() => setSidebarOpen(false)}>Gallery</a></li>
-              <li><a href="https://brainshospital.com/Videos.html" onClick={() => setSidebarOpen(false)}>Videos</a></li>
-            </ul>
-          </li>
-
-          {/* Standalone links */}
-          <li>
-            <a
-              href="https://brainshospital.com/INTERNATIONAL-PATIENTS.html"
-              onClick={() => setSidebarOpen(false)}>
-              INTERNATIONAL PATIENTS
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://brainshospital.com/Diseases.html"
-              onClick={() => setSidebarOpen(false)}>
-              DISEASES
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://brainshospital.com/Key-Procedures.html"
-              onClick={() => setSidebarOpen(false)}>
-              KEY PROCEDURES
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://brainshospital.com/Contact-Us.html"
-              onClick={() => setSidebarOpen(false)}>
-              CONTACT US
-            </a>
-          </li>
+            )
+          )}
         </ul>
       </div>
 

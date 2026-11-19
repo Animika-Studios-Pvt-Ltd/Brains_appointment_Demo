@@ -130,8 +130,8 @@ function showRescheduleLimitSwal(currentCount, limit) {
     html: `You have reached the maximum allowed (${limit}) reschedules.
     Please contact the support team / receptionist for further changes.
     <div style="margin-top:10px; font-size:0.9em; color:#374151;">
-        Call: <strong>+91 9148080000</strong><br/>
-        Email: <strong>callcenter@brains.org.in</strong>
+        Call: <strong>+91 9876543210</strong><br/>
+        Email: <strong>support@appointmentportal.com</strong>
       </div>`,
     showCloseButton: true,
     showCancelButton: false,
@@ -294,8 +294,8 @@ function AppointmentListRow({
                       You have reached the maximum allowed (${cancelLimit}) cancellations.
                       Please contact the support team/receptionist for further assistance.
                       <div style="margin-top:10px; font-size:0.9em; color:#374151;">
-                        Call: <strong>+91 9148080000</strong><br/>
-                        Email: <strong>callcenter@brains.org.in</strong>
+                        Call: <strong>+91 9876543210</strong><br/>
+                        Email: <strong>support@appointmentportal.com</strong>
                       </div>
                     `,
                     showCloseButton: true,
@@ -505,8 +505,8 @@ export default function PatientAppointmentsPage() {
         You have reached the maximum allowed (${cancelLimit}) cancellations.
         Please contact the support team / receptionist for further assistance.
         <div style="margin-top:10px; font-size:0.9em; color:#374151;">
-          Call: <strong>+91 9148080000</strong><br/>
-          Email: <strong>callcenter@brains.org.in</strong>
+          Call: <strong>+91 9876543210</strong><br/>
+          Email: <strong>support@appointmentportal.com</strong>
         </div>
       `,
         showCloseButton: true,

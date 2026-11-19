@@ -61,7 +61,7 @@ export default function InstallPWAPrompt() {
         <div className="flex items-start gap-3">
           <img 
             src="/images/brains-logo.png"
-            alt="Brains Super Speciality Hospital"
+            alt="Appointment Scheduler"
             className="w-12 h-12 rounded-lg object-contain"
           />
           <div className="flex-1">

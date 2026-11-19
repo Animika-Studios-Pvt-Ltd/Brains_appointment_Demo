@@ -831,7 +831,7 @@ export default function DoctorProfileEdit() {
             {/* Live badge watermarks */}
             <div className="absolute top-4 right-4 flex items-center gap-1 opacity-70">
               <Stethoscope className="w-4 h-4 text-[#06adc6] animate-pulse" />
-              <span className="text-[8px] font-body uppercase tracking-wider text-slate-400">Brains Staff</span>
+              <span className="text-[8px] font-body uppercase tracking-wider text-slate-400">Medical Staff</span>
             </div>
 
             <div className="relative space-y-6">

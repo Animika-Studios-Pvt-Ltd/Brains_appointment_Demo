@@ -317,7 +317,7 @@ export default function AdminAnalyticsPage() {
     let csvContent = "data:text/csv;charset=utf-8,";
 
     // Header Info
-    csvContent += `BRAINS SUPER SPECIALITY HOSPITAL - CLINICAL ANALYTICS REPORT\r\n`;
+    csvContent += `CLINICAL APPOINTMENTS & ANALYTICS REPORT\r\n`;
     csvContent += `Report Period,${selectedMonth === 'all' ? 'All Time' : selectedMonth}\r\n`;
     csvContent += `Generated On,${new Date().toLocaleString()}\r\n\r\n`;
 
@@ -361,7 +361,7 @@ export default function AdminAnalyticsPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `DrBrains_Hospital_Analytics_${selectedMonth || 'Report'}.csv`);
+    link.setAttribute("download", `Hospital_Analytics_${selectedMonth || 'Report'}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

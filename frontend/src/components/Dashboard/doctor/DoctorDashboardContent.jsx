@@ -740,7 +740,7 @@ const DoctorDashboardContent = () => {
             <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-white/20 border-t-[#05dcfb] rounded-full animate-spin mx-auto"></div>
             <Activity className="w-8 h-8 text-[#05dcfb] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
           </div>
-          <h3 className="text-white text-xl font-heading mb-2">Brains Hospital</h3>
+          <h3 className="text-white text-xl font-heading mb-2">Doctor Workspace</h3>
           <p className="text-blue-100 text-sm font-light">Securing your clinical workspace...</p>
         </div>
       </div>

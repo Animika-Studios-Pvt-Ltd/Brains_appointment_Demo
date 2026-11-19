@@ -78,7 +78,7 @@ export default function Register() {
         <aside className="hidden bg-gradient-to-b from-[#134e97] via-[#0f5aa8] to-[#06adc6] p-8 text-white min-[1000px]:flex min-[1000px]:flex-col min-[1000px]:justify-center min-[1200px]:p-10 xl:p-12">
           <div className="flex flex-1 flex-col items-center justify-center text-center">
             <p className="inline-flex rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-semibold tracking-wider">
-              BRAINS APPOINTMENTS
+              APPOINTMENT SCHEDULER
             </p>
             <h2 className="mt-4 text-4xl font-bold leading-tight xl:text-5xl">Create Account</h2>
             <p className="mt-3 max-w-sm text-white/90 xl:text-lg">

@@ -9,24 +9,22 @@ function Footer() {
           <div className="lg:flex-[3] text-center lg:text-left">
             <div className="copy-ryt">
               <p className="text-sm font-['roboto-light'] font-light text-slate-600 lg:whitespace-nowrap">
-                © 2019-2026. Brains Super Speciality Hospital. All rights reserved.
+                © 2026 Healthcare Appointment Portal. All rights reserved.
               </p>
             </div>
           </div>
           <div className="lg:flex-[2] flex justify-center items-center gap-2 text-sm font-['roboto-light'] font-light text-slate-600">
             <a
-              href="https://brainshospital.com/Privacy-Policy"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#privacy"
+              onClick={(e) => e.preventDefault()}
               className="text-primary hover:text-accent transition-colors duration-200"
             >
               Privacy Policy
             </a>
             <span className="text-slate-500">|</span>
             <a
-              href="https://brainshospital.com/Disclaimer"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#disclaimer"
+              onClick={(e) => e.preventDefault()}
               className="text-primary hover:text-accent transition-colors duration-200"
             >
               Disclaimer

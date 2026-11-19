@@ -451,13 +451,13 @@ function NeedHelpCard({ compact = false, sidebar = false }) {
               href="tel:08042070577"
               className="flex items-center gap-2.5 text-[#134e97] hover:text-[#06adc6] transition-colors">
               <Phone className="h-4 w-4 shrink-0 text-[#134e97]" strokeWidth={2} />
-              <span>+91 9148080000</span>
+              <span>+91 9876543210</span>
             </a>
             <a
-              href="mailto:callcenter@brains.org.in"
+              href="mailto:support@appointmentportal.com"
               className="flex items-start gap-2.5 text-[#134e97] hover:text-[#06adc6] transition-colors">
               <Mail className="h-4 w-4 shrink-0 text-[#134e97] mt-0.5" strokeWidth={2} />
-              <span className="break-words leading-snug">callcenter@brains.org.in</span>
+              <span className="break-words leading-snug">support@appointmentportal.com</span>
             </a>
           </div>
         </div>
@@ -581,8 +581,8 @@ function showRescheduleLimitSwal(currentCount, limit) {
     html: `You have reached the maximum allowed (${limit}) reschedules.
     Please contact the support team / receptionist for further changes.
     <div style="margin-top:10px; font-size:0.9em; color:#134e97;">
-        Call: <strong>+91 9148080000</strong><br/>
-        Email: <strong>callcenter@brains.org.in</strong>
+        Call: <strong>+91 9876543210</strong><br/>
+        Email: <strong>support@appointmentportal.com</strong>
       </div>`,
     showCloseButton: true,
     showCancelButton: false,
@@ -956,8 +956,8 @@ export default function PatientDashboard() {
         html: `You have reached the maximum allowed (${cancelLimit}) cancellations.
       Please contact the support team/receptionist for further assistance.
       <div style="margin-top:10px; font-size:0.9em; color:#134e97;">
-        Call: <strong>+91 9148080000</strong><br/>
-        Email: <strong>callcenter@brains.org.in</strong>
+        Call: <strong>+91 9876543210</strong><br/>
+        Email: <strong>support@appointmentportal.com</strong>
       </div>
     `,
         showCloseButton: true,

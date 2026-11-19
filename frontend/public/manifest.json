@@ -1,7 +1,7 @@
 {
-  "name": "Brains Super Speciality Hospital",
-  "short_name": "Brains",
-  "description": "Book appointments with Brains Super Speciality Hospital",
+  "name": "Appointment Scheduler",
+  "short_name": "Appointments",
+  "description": "Book and manage appointments in seconds",
   "start_url": "/patient/DoctorListPage",
   "scope": "/",
   "display": "standalone",
