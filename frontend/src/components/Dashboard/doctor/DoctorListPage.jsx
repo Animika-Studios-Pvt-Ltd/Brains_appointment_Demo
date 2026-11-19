@@ -117,7 +117,7 @@ export default function DoctorListPage() {
         {/* Title */}
         <div className="text-center py-4 sm:py-5 md:py-6 mb-2 sm:mb-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#134e97] tracking-tight">
-            Our Expert Doctors
+            Consult Our Experts
           </h1>
           <span
             className="mt-2 mx-auto block h-1 w-14 rounded-full bg-[#06adc6]"

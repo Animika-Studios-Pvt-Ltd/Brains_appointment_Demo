@@ -25,7 +25,7 @@ const DOCTOR_LIST_PATH = "/patient/DoctorListPage";
 const DUMMY_NAV_ITEMS = [
   {
     id: "doctors",
-    label: "FIND DOCTORS",
+    label: "CONSULT EXPERTS",
     href: DOCTOR_LIST_PATH,
     isLink: true,
   },
