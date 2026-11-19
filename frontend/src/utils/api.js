@@ -178,8 +178,8 @@ export const isAuthenticated = () => {
   return !!getAuthToken() && !!getUser();
 };
 
-/** External site users land on after logout */
-export const POST_LOGOUT_REDIRECT_URL = 'https://brainshospital.com/';
+/** URL users land on after logout */
+export const POST_LOGOUT_REDIRECT_URL = '/login';
 
 /**
  * Clear authentication data
