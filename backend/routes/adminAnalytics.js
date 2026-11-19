@@ -176,9 +176,9 @@ router.get(
 );
 
 // --- high-level stats (enhanced) ---
-// GET /api/admin/analytics/stats?month=YYYY-MM
+// GET /api/admin/analytics or /api/admin/analytics/stats?month=YYYY-MM
 router.get(
-  '/stats',
+  ['/', '/stats'],
   authenticate,
   requireRole('admin','super_admin'),
   async (req, res) => {

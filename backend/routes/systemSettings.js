@@ -3,6 +3,32 @@ const router = express.Router();
 const SystemSetting = require('../modal/SystemSetting');
 const { authenticate, requireRole } = require('../middleware/authMiddleware');
 
+// Get all system settings
+router.get('/', async (req, res) => {
+  try {
+    const settings = await SystemSetting.find({});
+    const settingsMap = {};
+    settings.forEach(s => {
+      settingsMap[s.key] = s.value;
+    });
+    if (settingsMap.onlineBookingLive === undefined) {
+      settingsMap.onlineBookingLive = true;
+    }
+    return res.json({
+      status: 'success',
+      data: settingsMap,
+      settings: settingsMap
+    });
+  } catch (error) {
+    console.error('Error fetching system settings:', error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Failed to fetch system settings',
+      error: error.message
+    });
+  }
+});
+
 // Get online booking live status (public endpoint)
 router.get('/online-booking', async (req, res) => {
   try {

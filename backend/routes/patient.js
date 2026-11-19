@@ -225,6 +225,82 @@ router.get('/me', authenticate, requirePatient, async (req, res) => {
   }
 });
 
+// ========== PATIENT DASHBOARD ==========
+router.get('/dashboard', authenticate, requirePatient, async (req, res) => {
+  try {
+    const patientId = req.user.id;
+    const patient = await Patient.findById(patientId).select('-password').lean();
+    if (!patient) {
+      return res.status(404).json({ status: 'error', success: false, message: 'Patient not found' });
+    }
+
+    const query = { patientId };
+    const populateDoctor = { path: 'doctorId', select: 'name specialization profileImage fees department' };
+
+    const [testingRows, productionRows] = await Promise.all([
+      AppointmentTesting.find(query).populate(populateDoctor).lean(),
+      Appointment.find(query).populate(populateDoctor).lean(),
+    ]);
+
+    const seen = new Set();
+    const merged = [];
+    for (const row of [...productionRows, ...testingRows]) {
+      const id = String(row._id);
+      if (seen.has(id)) continue;
+      seen.add(id);
+      merged.push(row);
+    }
+
+    merged.sort((a, b) => {
+      const aTime = new Date(a.slotStartIso || a.createdAt || 0).getTime();
+      const bTime = new Date(b.slotStartIso || b.createdAt || 0).getTime();
+      return bTime - aTime;
+    });
+
+    const now = new Date();
+    const upcomingAppointments = merged
+      .filter((a) => {
+        const isUpcomingStatus = ['Scheduled', 'In Progress', 'Confirmed'].includes(a.status);
+        const startTime = new Date(a.slotStartIso || a.date);
+        return isUpcomingStatus && (isNaN(startTime.getTime()) || startTime >= now);
+      })
+      .slice(0, 5);
+
+    const stats = {
+      totalAppointments: merged.length,
+      upcomingAppointments: merged.filter((a) => ['Scheduled', 'In Progress', 'Confirmed'].includes(a.status)).length,
+      completedAppointments: merged.filter((a) => a.status === 'Completed').length,
+      cancelledAppointments: merged.filter((a) => ['Cancelled', 'Rejected'].includes(a.status)).length,
+    };
+
+    const activeDoctorsCount = await Doctor.countDocuments({ status: { $in: ['active', 'Approved'] } });
+
+    res.json({
+      status: 'success',
+      success: true,
+      message: 'Patient dashboard fetched successfully',
+      data: {
+        patient: {
+          id: patient._id,
+          name: patient.name,
+          email: patient.email,
+          phone: patient.phone,
+          profileImage: patient.profileImage || generateInitialsAvatar(patient.name),
+          gender: patient.gender,
+          age: patient.age,
+        },
+        stats,
+        upcomingAppointments,
+        recentAppointments: merged.slice(0, 5),
+        activeDoctorsCount,
+      },
+    });
+  } catch (error) {
+    console.error('Patient dashboard error:', error);
+    res.status(500).json({ status: 'error', success: false, message: 'Failed to fetch patient dashboard', errors: [error.message] });
+  }
+});
+
 router.put(
   '/profile',
   authenticate,

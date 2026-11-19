@@ -100,6 +100,90 @@ router.get('/google-oauth-callback', async (req, res) => {
   }
 });
 
+/**
+ * GET /api/super-admin/system-stats
+ * Returns system statistics including server, database status, user counts, appointment metrics, and log activity
+ */
+router.get('/system-stats', authenticate, requireRole('super_admin', 'admin'), async (req, res) => {
+  try {
+    const mongoose = require('mongoose');
+    const Doctor = require('../modal/Doctor');
+    const Patient = require('../modal/Patient');
+    const Admin = require('../modal/Admin');
+    const Receptionist = require('../modal/Receptionist');
+    const Appointment = require('../modal/Appointment');
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    const [
+      totalDoctors,
+      totalPatients,
+      totalAdmins,
+      totalReceptionists,
+      totalAppointments,
+      todayAppointments,
+      totalLoginsToday,
+      failedLoginsToday,
+      totalActivitiesToday,
+      totalLoginEntries,
+      totalActivityEntries
+    ] = await Promise.all([
+      Doctor.countDocuments({}).catch(() => 0),
+      Patient.countDocuments({}).catch(() => 0),
+      Admin.countDocuments({}).catch(() => 0),
+      Receptionist.countDocuments({}).catch(() => 0),
+      Appointment.countDocuments({}).catch(() => 0),
+      Appointment.countDocuments({ slotStartIso: { $gte: startOfToday } }).catch(() => 0),
+      LoginHistory.countDocuments({ timestamp: { $gte: startOfToday }, action: 'LOGIN_SUCCESS' }).catch(() => 0),
+      LoginHistory.countDocuments({ timestamp: { $gte: startOfToday }, status: 'FAILED' }).catch(() => 0),
+      ActivityLog.countDocuments({ timestamp: { $gte: startOfToday } }).catch(() => 0),
+      LoginHistory.countDocuments().catch(() => 0),
+      ActivityLog.countDocuments().catch(() => 0)
+    ]);
+
+    const dbConnected = mongoose.connection.readyState === 1;
+
+    return res.json({
+      success: true,
+      stats: {
+        server: {
+          uptime: process.uptime(),
+          environment: process.env.NODE_ENV || 'development',
+          nodeVersion: process.version,
+          memoryUsage: process.memoryUsage(),
+          timestamp: new Date().toISOString()
+        },
+        database: {
+          connected: dbConnected,
+          status: dbConnected ? 'connected' : 'disconnected'
+        },
+        users: {
+          totalDoctors,
+          totalPatients,
+          totalAdmins,
+          totalReceptionists,
+          totalUsers: totalDoctors + totalPatients + totalAdmins + totalReceptionists
+        },
+        appointments: {
+          total: totalAppointments,
+          today: todayAppointments
+        },
+        logs: {
+          totalLoginsToday,
+          failedLoginsToday,
+          totalActivitiesToday,
+          totalLoginEntries,
+          totalActivityEntries
+        }
+      }
+    });
+  } catch (err) {
+    console.error('❌ system-stats error:', err);
+    return res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // Guard ALL subsequent endpoints in this router to super_admin ONLY
 router.use(authenticate, requireRole('super_admin'));
 
