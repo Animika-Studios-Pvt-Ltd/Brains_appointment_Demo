@@ -14,7 +14,14 @@ const { recordLoginHistory, recordActivity } = require('../services/activityLogg
 const PASSWORD_RESET_PURPOSE = 'password-reset';
 
 function frontendBaseUrl() {
-  return String(process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+  const envUrl = process.env.FRONTEND_URL;
+  if (
+    envUrl &&
+    (!envUrl.includes('brainshospital.com') || envUrl.includes('app.brainshospital.com'))
+  ) {
+    return String(envUrl).replace(/\/$/, '');
+  }
+  return 'http://localhost:5173';
 }
 
 function escapeHtml(s) {
@@ -247,16 +254,15 @@ const isSafeFrontendReturnTo = (value) => {
     if (host === 'localhost' || host === '127.0.0.1') return true;
     if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
     if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    // Known production / staging frontends
+    // Known production / staging frontends (do NOT include marketing site brainshospital.com)
     const allowedHosts = new Set([
       'app.brainshospital.com',
-      'www.brainshospital.com',
-      'brainshospital.com',
       'djwa.onrender.com',
       'cb072b8a.brains-appointment.pages.dev',
     ]);
     if (allowedHosts.has(host)) return true;
-    if (host.endsWith('.brains-appointment.pages.dev')) return true;
+    if (host.endsWith('.pages.dev') || host.endsWith('.workers.dev')) return true;
+    if (host.endsWith('.onrender.com')) return true;
     // Also allow whatever FRONTEND_URL is configured on this server
     const configured = frontendBaseUrl();
     try {
