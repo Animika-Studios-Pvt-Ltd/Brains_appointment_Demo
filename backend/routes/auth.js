@@ -655,6 +655,7 @@ router.post('/forgot-password', async (req, res) => {
 
     const { user, type } = await findUserByEmail(email);
     if (!user || user.isActive === false) {
+      console.log(`⚠️ Forgot password requested for non-existent or inactive email: ${email}`);
       return res.json(genericOk);
     }
 
@@ -679,7 +680,9 @@ router.post('/forgot-password', async (req, res) => {
   <p style="font-size:12px;color:#94a3b8;word-break:break-all">${escapeHtml(resetUrl)}</p>
 </body></html>`;
 
+    console.log(`✉️ Sending password reset email to: ${user.email}`);
     await sendMail(user.email, `${appName} — reset your password`, html);
+    console.log(`✅ Password reset email successfully sent to: ${user.email}`);
     return res.json(genericOk);
   } catch (error) {
     console.error('❌ forgot-password:', error);

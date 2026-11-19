@@ -255,24 +255,6 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-slate-200" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-slate-500">Or continue with</span>
-            </div>
-          </div>
-
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 transition hover:bg-slate-50 sm:py-3.5">
-            <span className="flex items-center justify-center gap-2 font-semibold text-gray-700">
-              <img src="https://www.svgrepo.com/show/355037/google.svg" className="h-5 w-5" alt="Google" />
-              Login with Google
-            </span>
-          </button>
-
           <p className="mt-7 text-center text-sm text-gray-600">
             Don&apos;t have an account?{" "}
             <Link to={`/register${window.location.search}`} className="font-semibold text-[#134e97] hover:text-[#013473]">
